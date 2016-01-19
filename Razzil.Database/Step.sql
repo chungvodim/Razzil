@@ -8,7 +8,7 @@
 	[Url] NVARCHAR(500) NULL, 
     [Params] NVARCHAR(500) NULL, 
     [Encoding] VARCHAR(50) NULL, 
-    [Page] NVARCHAR(MAX) NULL, 
-    [Clue] VARCHAR(500) NULL, 
-	CONSTRAINT FK_Step_StepType FOREIGN KEY([StepTypeId]) REFERENCES STEPTYPE([Id])
+    [Sign] VARCHAR(500) NULL, 
+	CONSTRAINT FK_Step_StepType FOREIGN KEY([StepTypeId]) REFERENCES STepType([Id]),
+	CONSTRAINT FK_Step_Bank FOREIGN KEY([BankId]) REFERENCES Bank([Id]),
 )

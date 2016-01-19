@@ -12,6 +12,7 @@
     [CurrentBalance] DECIMAL NULL, 
     [Otp] VARCHAR(20) NULL, 
     [OtpRef] VARCHAR(20) NULL, 
+	[LastPage] NVARCHAR(MAX) NULL,
     [CreatedTime] DATETIME NULL, 
     [LastUpdatedTime] DATETIME NULL, 
     CONSTRAINT FK_BankTransaction_TransactionType FOREIGN KEY ([TypeId]) REFERENCES TransactionType(Id),
