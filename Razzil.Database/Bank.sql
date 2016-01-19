@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Bank]
+(
+	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[BankId] VARCHAR(20) NULL,
+	[Name] VARCHAR(100) NOT NULL,
+	[FullName] VARCHAR(100) NULL,
+
+)

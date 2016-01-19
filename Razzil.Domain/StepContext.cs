@@ -12,13 +12,10 @@ namespace Razzil.Domain
         public string SelBase { get; set; }
         public string TxtParam { get; set; }
         
-        public string OTP { get; set; }
-        public string RefNo { get; set; }
-        public string Fee { get; set; }
-        public string Balance { get; set; }
         public string LastPage { get; set; }
         public StatusCode StatusCode { get; set; }
         public bool IsSuccessful { get; set; }
-        public TransactionModel TransferModel { get; set; } 
+        public TransactionModel TransferModel { get; set; }
+        public Encoding Encoding { get; set; }
     }
 }
