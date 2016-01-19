@@ -10,15 +10,14 @@ namespace Razzil.Domain
     public class GetRequestStep : Step
     {
 
-        public GetRequestStep(StepContext context)
+        public GetRequestStep(int currentStepId, StepContext context)
         {
-            this.Context = context;
-            this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
+            Initialize(currentStepId, context);
         }
         public override void GetRequest()
         {
-            var page = this.Client.GetAsync(this.Url);
-            throw new NotImplementedException();
+            var response = this.Client.GetAsync(this.Url).Result;
+            this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
         }
 
         public override void Log()

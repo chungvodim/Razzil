@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Razzil.Domain
 {
     public class StepContext : DomainObject
-    {      
+    {
         public string LastPage { get; set; }
         public StatusCode StatusCode { get; set; }
         public bool IsSuccessful { get; set; }

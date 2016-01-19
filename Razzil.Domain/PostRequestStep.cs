@@ -9,10 +9,9 @@ namespace Razzil.Domain
 {
     public class PostRequestStep : Step
     {
-        public PostRequestStep(StepContext context)
+        public PostRequestStep(int currentStepId, StepContext context)
         {
-            this.Context = context;
-            this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
+            Initialize(currentStepId, context);
         }
         public override void GetRequest()
         {
@@ -21,7 +20,8 @@ namespace Razzil.Domain
 
         public override void PostRequest()
         {
-            throw new NotImplementedException();
+            var response = this.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result;
+            this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
         }
 
         public override void Log()

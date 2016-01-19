@@ -11,6 +11,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Razzil.Database", "Razzil.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Tools", "Razzil.Tools\Razzil.Tools.csproj", "{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.IntegrationTest", "Razzil.IntegrationTest\Razzil.IntegrationTest.csproj", "{57B244C4-DC16-4BA2-98C1-170800D12481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.UnitTest", "Razzil.UnitTest\Razzil.UnitTest.csproj", "{305B3508-918D-404B-BF0F-DBC09DCA6805}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B244C4-DC16-4BA2-98C1-170800D12481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B244C4-DC16-4BA2-98C1-170800D12481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B244C4-DC16-4BA2-98C1-170800D12481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B244C4-DC16-4BA2-98C1-170800D12481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{305B3508-918D-404B-BF0F-DBC09DCA6805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{305B3508-918D-404B-BF0F-DBC09DCA6805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{305B3508-918D-404B-BF0F-DBC09DCA6805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{305B3508-918D-404B-BF0F-DBC09DCA6805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
