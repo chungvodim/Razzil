@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Step]
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[StepId] int NOT NULL, 
 	[StepTypeId] int NULL, 
     [BankId] INT NULL, 
     [Description] VARCHAR(100) NULL, 

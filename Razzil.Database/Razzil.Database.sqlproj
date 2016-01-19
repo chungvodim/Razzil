@@ -58,4 +58,16 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="BankTransaction.sql" />
+    <Build Include="Account.sql" />
+    <Build Include="TransactionType.sql" />
+    <Build Include="Step.sql" />
+    <Build Include="StepType.sql" />
+    <Build Include="AccountGroup.sql" />
+    <Build Include="Bank.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Razzil.Database.refactorlog" />
+  </ItemGroup>
 </Project>

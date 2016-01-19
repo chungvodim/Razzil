@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Domain", "Razzil.Domain\Razzil.Domain.csproj", "{A27ECD52-27E0-4A1D-8BFF-4E2473716891}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.DataAccess", "Razzil.DataAccess\Razzil.DataAccess.csproj", "{EC031A5D-5C78-4C98-80E8-B35C1F855317}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Razzil.Database", "Razzil.Database\Razzil.Database.sqlproj", "{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Tools", "Razzil.Tools\Razzil.Tools.csproj", "{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,16 @@ Global
 		{EC031A5D-5C78-4C98-80E8-B35C1F855317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC031A5D-5C78-4C98-80E8-B35C1F855317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC031A5D-5C78-4C98-80E8-B35C1F855317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B24F3F-9C12-4AE7-AD52-25EA93FE2F1C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B038E4-6F31-4733-B3D7-1DCF4CEC2F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
