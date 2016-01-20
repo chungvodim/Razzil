@@ -18,7 +18,13 @@ namespace Razzil.IntegrationTest
             workflow.OnStart += OnTransactionStart;
             workflow.OnSuccess += OnTransactionSuccess;
             workflow.OnFail += OnTransactionFail;
+            workflow.OnInprogress += OnTransactionInprogress;
             workflow.Execute();
+        }
+
+        private static void OnTransactionInprogress(Step step)
+        {
+            Console.WriteLine("Transaction is inprogress at step : {0}", step.Name);
         }
 
         private static void OnTransactionFail(Step step)

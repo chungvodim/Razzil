@@ -13,7 +13,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<bool> Execute()
+        public override async Task<TransactionResult> Execute()
         {
             this.NextStepId = 7;
             if (this.Context.LastPage.Contains(this.Sign))
@@ -22,7 +22,7 @@ namespace Razzil.Workflow
             }
             else
             {
-                return false;
+                return TransactionResult.Failed;
             }
         }
     }

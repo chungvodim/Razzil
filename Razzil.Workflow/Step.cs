@@ -67,7 +67,7 @@ namespace Razzil.Workflow
             this.Params = new List<KeyValuePair<string, string>>();
             this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
         }
-        public virtual async Task<bool> Execute()
+        public virtual async Task<TransactionResult> Execute()
         {
             Step nextStep = CreateNextStep();
             if (nextStep != null)
@@ -76,7 +76,7 @@ namespace Razzil.Workflow
             }
             else
             {
-                return false;
+                return TransactionResult.Successful;
             }
         }
 

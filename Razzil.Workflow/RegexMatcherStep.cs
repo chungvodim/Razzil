@@ -15,7 +15,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<bool> Execute()
+        public override async Task<TransactionResult> Execute()
         {
             //var regex = new Regex(this.Signs);
             //var match = regex.Match(content);
@@ -34,7 +34,7 @@ namespace Razzil.Workflow
             }
             else
             {
-                return false;
+                return TransactionResult.Failed;
             }
         }
     }

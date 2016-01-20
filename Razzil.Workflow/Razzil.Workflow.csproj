@@ -48,6 +48,7 @@
     <Compile Include="StatusCode.cs" />
     <Compile Include="Step.cs" />
     <Compile Include="StepContext.cs" />
+    <Compile Include="TransactionResult.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="XPathMatcherStep.cs" />
   </ItemGroup>

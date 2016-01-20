@@ -9,11 +9,13 @@ namespace Razzil.Workflow
     public delegate void StartTransactionHandler(Step step);
     public delegate void TransactionSuccessHandler(Step step);
     public delegate void TransactionFailHandler(Step step);
+    public delegate void TransactionInprogressHandler(Step step);
     public class Workflow
     {
         public StartTransactionHandler OnStart { get; set; }
         public TransactionSuccessHandler OnSuccess { get; set; }
         public TransactionFailHandler OnFail { get; set; }
+        public TransactionInprogressHandler OnInprogress { get; set; }
         private Step Step { get; set; }
 
         public Workflow(Step step)
@@ -25,9 +27,11 @@ namespace Razzil.Workflow
         {
             OnStart(this.Step);
             var result = await this.Step.Execute();
-            if (!result)
+            switch (result)
             {
-                OnFail(this.Step);
+                case TransactionResult.Failed: OnFail(this.Step); break;
+                case TransactionResult.Inprogress: OnFail(this.Step); break;
+                case TransactionResult.Successful: OnSuccess(this.Step); break;
             }
         }
     }

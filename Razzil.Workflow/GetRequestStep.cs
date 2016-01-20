@@ -14,7 +14,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<bool> Execute()
+        public override async Task<TransactionResult> Execute()
         {
             var response = this.Client.GetAsync(this.Url).Result;
             this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
@@ -25,7 +25,7 @@ namespace Razzil.Workflow
             }
             else
             {
-                return false;
+                return TransactionResult.Failed;
             }
         }
     }
