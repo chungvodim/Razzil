@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Domain", "Razzil.Domain\Razzil.Domain.csproj", "{A27ECD52-27E0-4A1D-8BFF-4E2473716891}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Workflow", "Razzil.Workflow\Razzil.Workflow.csproj", "{A27ECD52-27E0-4A1D-8BFF-4E2473716891}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.DataAccess", "Razzil.DataAccess\Razzil.DataAccess.csproj", "{EC031A5D-5C78-4C98-80E8-B35C1F855317}"
 EndProject

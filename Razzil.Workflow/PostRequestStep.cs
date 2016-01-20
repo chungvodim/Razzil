@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Razzil.Domain
+namespace Razzil.Workflow
 {
     public class PostRequestStep : Step
     {
@@ -13,25 +13,19 @@ namespace Razzil.Domain
         {
             Initialize(currentStepId, context);
         }
-        public override void GetRequest()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void PostRequest()
+        public override async Task<bool> Execute()
         {
             var response = this.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result;
             this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
-        }
-
-        public override void Log()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Parse()
-        {
-            throw new NotImplementedException();
+            this.NextStepId = 7;
+            if (this.Context.LastPage.Contains(this.Sign))
+            {
+                return await base.Execute();
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

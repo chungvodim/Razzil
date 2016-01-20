@@ -7,25 +7,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Razzil.Domain
+namespace Razzil.Workflow
 {
-    class MatchingStep : Step
+    class RegexMatcherStep : Step
     {
-        public MatchingStep(int currentStepId, StepContext context)
+        public RegexMatcherStep(int currentStepId, StepContext context)
         {
             Initialize(currentStepId, context);
         }
-        public override void GetRequest()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Log()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Parse()
+        public override async Task<bool> Execute()
         {
             //var regex = new Regex(this.Signs);
             //var match = regex.Match(content);
@@ -38,12 +28,14 @@ namespace Razzil.Domain
             //{
             //    return new ParseResult() { IsSuccessful = false };
             //}
-            throw new NotImplementedException();
-        }
-
-        public override void PostRequest()
-        {
-            throw new NotImplementedException();
+            if (this.Context.LastPage.Contains(this.Sign))
+            {
+                return await base.Execute();
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
