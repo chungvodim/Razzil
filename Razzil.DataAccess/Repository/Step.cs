@@ -44,6 +44,8 @@ namespace Razzil.DataAccess.Repository
         [StringLength(500)]
         public string XPath { get; set; }
 
+        public int? TimeOut { get; set; }
+
         public virtual Bank Bank { get; set; }
 
         public virtual StepType StepType { get; set; }
