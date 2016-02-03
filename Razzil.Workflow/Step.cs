@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Razzil.DataAccess.Repository;
+using Razzil.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,10 +16,11 @@ namespace Razzil.Workflow
         protected int CurrentStepId { get; set; }
         protected int? NextStepId { get; set; }
         protected string Url { get; set; }
+        protected string Key { get; set; }
         protected string Pattern { get; set; }
         protected string XPath { get; set; }
         protected string Sign { get; set; }
-        protected IEnumerable<KeyValuePair<string, string>> Params { get; set; }
+        protected Dictionary<string, string> Params { get; set; }
 
         protected HttpClient Client { get; set; }
 
@@ -30,22 +33,25 @@ namespace Razzil.Workflow
         //public StepFailedHandler OnStepFailed;
         private Step CreateNextStep()
         {
-            if (this.NextStepId != null)
+            using (var db = new MainModel())
             {
-                int nextStepType = GetNextStepType();
-                Step nextStep;
-                switch (nextStepType)
+                if (this.NextStepId != null)
                 {
-                    case 1: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
-                    case 2: nextStep = new PostRequestStep(this.NextStepId.Value, this.Context); break;
-                    case 3: nextStep = new RegexMatcherStep(this.NextStepId.Value, this.Context); break;
-                    default: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
+                    int nextStepType = GetNextStepType();
+                    Step nextStep;
+                    switch (nextStepType)
+                    {
+                        case 1: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
+                        case 2: nextStep = new PostRequestStep(this.NextStepId.Value, this.Context); break;
+                        case 3: nextStep = new RegexMatcherStep(this.NextStepId.Value, this.Context); break;
+                        default: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
+                    }
+                    return nextStep;
                 }
-                return nextStep;
-            }
-            else
-            {
-                return null;
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -56,16 +62,26 @@ namespace Razzil.Workflow
 
         protected void Initialize(int currentStepId, StepContext context)
         {
-            this.CurrentStepId = currentStepId;
-            this.Context = context;
-            this.Name = "Test Step";
-            this.Url = "";
-            this.PreviousStepId = 1;
-            this.Sign = "";
-            this.Pattern = "";
-            this.XPath = "";
-            this.Params = new List<KeyValuePair<string, string>>();
-            this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
+            using (var db = new MainModel())
+            {
+                var step = db.Steps.Where(x => x.BankId == this.Context.BankId && x.CurrentStepId == this.CurrentStepId).FirstOrDefault();
+                this.CurrentStepId = currentStepId;
+                this.Context = context;
+                this.Name = step.Name;
+                this.Url = step.Url;
+                this.PreviousStepId = step.PreviousStepId;
+                this.Sign = step.Sign;
+                this.Pattern = step.Pattern;
+                this.XPath = step.XPath;
+                string[] parameters = step.Params.Split(';');
+                this.Params = new Dictionary<string, string>();
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    this.Params[parameters[i]] = "";
+                }
+                this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
+            }
+                
         }
         public virtual async Task<TransactionResult> Execute()
         {

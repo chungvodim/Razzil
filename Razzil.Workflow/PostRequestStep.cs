@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Razzil.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,16 +16,25 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            var response = this.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result;
-            this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
-            this.NextStepId = 7;
-            if (this.Context.LastPage.Contains(this.Sign))
+            foreach (var key in this.Params.Keys)
             {
-                return await base.Execute();
+                if (!string.IsNullOrWhiteSpace(this.Context.Params[key]))
+                {
+                    Params[key] = this.Context.Params[key];
+                }
             }
-            else
+            using (var response = this.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result)
             {
-                return TransactionResult.Failed;
+                this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
+                this.NextStepId = 7;
+                if (this.Context.LastPage.Contains(this.Sign))
+                {
+                    return await base.Execute();
+                }
+                else
+                {
+                    return TransactionResult.Failed;
+                }
             }
         }
     }

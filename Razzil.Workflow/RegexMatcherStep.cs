@@ -1,4 +1,5 @@
 ﻿
+using Razzil.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,25 +18,30 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            //var regex = new Regex(this.Signs);
-            //var match = regex.Match(content);
-
-            //if (match.Success)
-            //{
-            //    return new ParseResult() { IsSuccessful = true, Value = match.Groups[1].Value };
-            //}
-            //else
-            //{
-            //    return new ParseResult() { IsSuccessful = false };
-            //}
-            if (this.Context.LastPage.Contains(this.Sign))
+            var parseValue = ParseValue(this.Context.LastPage, this.Pattern);
+            if (parseValue.IsSuccessful)
             {
+                this.Context.Params.Add(this.Key,parseValue.Value);
+                this.NextStepId = 7;
                 return await base.Execute();
             }
             else
             {
                 return TransactionResult.Failed;
             }
+        }
+
+        private ParseResult ParseValue(string pattern, string content)
+        {
+            var regex = new Regex(pattern);
+            var match = regex.Match(content);
+
+            if (match.Success)
+            {
+                return new ParseResult() { IsSuccessful = true, Value = match.Groups[1].Value };
+            }
+            else
+                return new ParseResult() { IsSuccessful = false };
         }
     }
 }
