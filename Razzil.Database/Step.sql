@@ -13,7 +13,8 @@
     [Encoding] VARCHAR(50) NULL, 
     [Sign] VARCHAR(500) NULL,
 	[Pattern] VARCHAR(500) NULL,
-	[XPath] VARCHAR(500) NULL, 
+	[XPath] VARCHAR(500) NULL,
+	[TimeOut] int NULL, 
 	CONSTRAINT FK_Step_StepType FOREIGN KEY([StepTypeId]) REFERENCES StepType([Id]),
 	CONSTRAINT FK_Step_Bank FOREIGN KEY([BankId]) REFERENCES Bank([Id]),
 )
