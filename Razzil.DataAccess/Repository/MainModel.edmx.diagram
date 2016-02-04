@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="915c4e152e4e4159b1ddb44ec1f9b627" Name="Diagram1">
+      <Diagram DiagramId="56d197a826c64277a19b4e518f3f9e0d" Name="Diagram1">
         <EntityTypeShape EntityType="RazzilModel.Account" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.AccountGroup" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.Bank" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.AccountGroup" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.Bank" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.BankGroup" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.BankTransaction" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.Step" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.StepType" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.TransactionType" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
         <AssociationConnector Association="RazzilModel.FK_Account_AccountGroup" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Account_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_BankGroup" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_BankTransaction_Bank" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_BankTransaction_Bank1" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Step_Bank" ManuallyRouted="false" />

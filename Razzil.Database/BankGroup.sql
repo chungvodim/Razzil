@@ -1,9 +1,7 @@
-﻿CREATE TABLE [dbo].[Bank]
+﻿CREATE TABLE [dbo].[BankGroup]
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[BankId] VARCHAR(20) NULL,
 	[Name] VARCHAR(100) NOT NULL,
 	[FullName] VARCHAR(100) NULL,
-	[BankGroupId] INT NULL,
-	CONSTRAINT FK_Bank_BankGroup FOREIGN KEY([BankGroupId]) REFERENCES Bank([Id]),
 )

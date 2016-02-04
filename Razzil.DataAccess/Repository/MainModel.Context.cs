@@ -28,6 +28,7 @@ namespace Razzil.DataAccess.Repository
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountGroup> AccountGroups { get; set; }
         public virtual DbSet<Bank> Banks { get; set; }
+        public virtual DbSet<BankGroup> BankGroups { get; set; }
         public virtual DbSet<BankTransaction> BankTransactions { get; set; }
         public virtual DbSet<Step> Steps { get; set; }
         public virtual DbSet<StepType> StepTypes { get; set; }

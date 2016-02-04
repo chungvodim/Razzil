@@ -67,6 +67,7 @@
     <Build Include="StepType.sql" />
     <Build Include="AccountGroup.sql" />
     <Build Include="Bank.sql" />
+    <Build Include="BankGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Razzil.Database.publish.xml" />

@@ -18,6 +18,7 @@ namespace Razzil.DataAccess.Repository
         public Bank()
         {
             this.Accounts = new HashSet<Account>();
+            this.Bank1 = new HashSet<Bank>();
             this.BankTransactions = new HashSet<BankTransaction>();
             this.BankTransactions1 = new HashSet<BankTransaction>();
             this.Steps = new HashSet<Step>();
@@ -27,9 +28,13 @@ namespace Razzil.DataAccess.Repository
         public string BankId { get; set; }
         public string Name { get; set; }
         public string FullName { get; set; }
+        public Nullable<int> BankGroupId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bank> Bank1 { get; set; }
+        public virtual Bank Bank2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
