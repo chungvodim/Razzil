@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RazzilModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankId" Type="int" Nullable="false" />
+          <Property Name="AccountGroupId" Type="int" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankId" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BankTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionId" Type="varchar" MaxLength="50" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="FromAccountNumber" Type="varchar" MaxLength="20" />
+          <Property Name="FromBankId" Type="int" />
+          <Property Name="ToAccountNumber" Type="varchar" MaxLength="20" />
+          <Property Name="ToBankId" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BankCharge" Type="decimal" Precision="8" Scale="0" />
+          <Property Name="CurrentBalance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Otp" Type="varchar" MaxLength="20" />
+          <Property Name="OtpRef" Type="varchar" MaxLength="20" />
+          <Property Name="LastPage" Type="nvarchar(max)" />
+          <Property Name="CreatedTime" Type="datetime" />
+          <Property Name="LastUpdatedTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreviousStepId" Type="int" />
+          <Property Name="CurrentStepId" Type="int" Nullable="false" />
+          <Property Name="NextStepId1" Type="int" />
+          <Property Name="NextStepId0" Type="int" />
+          <Property Name="StepTypeId" Type="int" Nullable="false" />
+          <Property Name="BankId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Params" Type="nvarchar" MaxLength="500" />
+          <Property Name="Encoding" Type="varchar" MaxLength="50" />
+          <Property Name="Sign" Type="varchar" MaxLength="500" />
+          <Property Name="Pattern" Type="varchar" MaxLength="500" />
+          <Property Name="XPath" Type="varchar" MaxLength="500" />
+          <Property Name="TimeOut" Type="int" />
+        </EntityType>
+        <EntityType Name="StepType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Account_AccountGroup">
+          <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="FromBankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_Bank1">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="ToBankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_StepType">
+          <End Role="StepType" Type="Self.StepType" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="StepTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RazzilModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountGroup" EntityType="Self.AccountGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankTransaction" EntityType="Self.BankTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StepType" EntityType="Self.StepType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_AccountGroup" Association="Self.FK_Account_AccountGroup">
+            <End Role="AccountGroup" EntitySet="AccountGroup" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Bank" Association="Self.FK_Account_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_Bank" Association="Self.FK_BankTransaction_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankTransaction" EntitySet="BankTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_Bank1" Association="Self.FK_BankTransaction_Bank1">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankTransaction" EntitySet="BankTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_TransactionType" Association="Self.FK_BankTransaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="BankTransaction" EntitySet="BankTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_Bank" Association="Self.FK_Step_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_StepType" Association="Self.FK_Step_StepType">
+            <End Role="StepType" EntitySet="StepType" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RazzilModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+          <Property Name="AccountGroupId" Type="Int32" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccountGroup" Relationship="Self.FK_Account_AccountGroup" FromRole="Account" ToRole="AccountGroup" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Account_Bank" FromRole="Account" ToRole="Bank" />
+        </EntityType>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_AccountGroup" FromRole="AccountGroup" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Bank" FromRole="Bank" ToRole="Account" />
+          <NavigationProperty Name="BankTransactions" Relationship="Self.FK_BankTransaction_Bank" FromRole="Bank" ToRole="BankTransaction" />
+          <NavigationProperty Name="BankTransactions1" Relationship="Self.FK_BankTransaction_Bank1" FromRole="Bank" ToRole="BankTransaction" />
+          <NavigationProperty Name="Steps" Relationship="Self.FK_Step_Bank" FromRole="Bank" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="BankTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="FromAccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FromBankId" Type="Int32" />
+          <Property Name="ToAccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ToBankId" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BankCharge" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="CurrentBalance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Otp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OtpRef" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastPage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_BankTransaction_Bank" FromRole="BankTransaction" ToRole="Bank" />
+          <NavigationProperty Name="Bank1" Relationship="Self.FK_BankTransaction_Bank1" FromRole="BankTransaction" ToRole="Bank" />
+          <NavigationProperty Name="TransactionType" Relationship="Self.FK_BankTransaction_TransactionType" FromRole="BankTransaction" ToRole="TransactionType" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreviousStepId" Type="Int32" />
+          <Property Name="CurrentStepId" Type="Int32" Nullable="false" />
+          <Property Name="NextStepId1" Type="Int32" />
+          <Property Name="NextStepId0" Type="Int32" />
+          <Property Name="StepTypeId" Type="Int32" Nullable="false" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Params" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Encoding" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sign" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Pattern" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="XPath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TimeOut" Type="Int32" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Step_Bank" FromRole="Step" ToRole="Bank" />
+          <NavigationProperty Name="StepType" Relationship="Self.FK_Step_StepType" FromRole="Step" ToRole="StepType" />
+        </EntityType>
+        <EntityType Name="StepType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Steps" Relationship="Self.FK_Step_StepType" FromRole="StepType" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BankTransactions" Relationship="Self.FK_BankTransaction_TransactionType" FromRole="TransactionType" ToRole="BankTransaction" />
+        </EntityType>
+        <Association Name="FK_Account_AccountGroup">
+          <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="FromBankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_Bank1">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="ToBankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankTransaction_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="0..1" />
+          <End Role="BankTransaction" Type="Self.BankTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankTransaction">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_StepType">
+          <End Role="StepType" Type="Self.StepType" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="StepTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AccountGroups" EntityType="Self.AccountGroup" />
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="BankTransactions" EntityType="Self.BankTransaction" />
+          <EntitySet Name="Steps" EntityType="Self.Step" />
+          <EntitySet Name="StepTypes" EntityType="Self.StepType" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <AssociationSet Name="FK_Account_AccountGroup" Association="Self.FK_Account_AccountGroup">
+            <End Role="AccountGroup" EntitySet="AccountGroups" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Bank" Association="Self.FK_Account_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_Bank" Association="Self.FK_BankTransaction_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="BankTransaction" EntitySet="BankTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_Bank1" Association="Self.FK_BankTransaction_Bank1">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="BankTransaction" EntitySet="BankTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_Bank" Association="Self.FK_Step_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="Step" EntitySet="Steps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankTransaction_TransactionType" Association="Self.FK_BankTransaction_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="BankTransaction" EntitySet="BankTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_StepType" Association="Self.FK_Step_StepType">
+            <End Role="StepType" EntitySet="StepTypes" />
+            <End Role="Step" EntitySet="Steps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RazzilModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="RazzilModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="AccountGroupId" ColumnName="AccountGroupId" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountGroups">
+            <EntityTypeMapping TypeName="RazzilModel.AccountGroup">
+              <MappingFragment StoreEntitySet="AccountGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="RazzilModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankTransactions">
+            <EntityTypeMapping TypeName="RazzilModel.BankTransaction">
+              <MappingFragment StoreEntitySet="BankTransaction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="FromAccountNumber" ColumnName="FromAccountNumber" />
+                <ScalarProperty Name="FromBankId" ColumnName="FromBankId" />
+                <ScalarProperty Name="ToAccountNumber" ColumnName="ToAccountNumber" />
+                <ScalarProperty Name="ToBankId" ColumnName="ToBankId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BankCharge" ColumnName="BankCharge" />
+                <ScalarProperty Name="CurrentBalance" ColumnName="CurrentBalance" />
+                <ScalarProperty Name="Otp" ColumnName="Otp" />
+                <ScalarProperty Name="OtpRef" ColumnName="OtpRef" />
+                <ScalarProperty Name="LastPage" ColumnName="LastPage" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Steps">
+            <EntityTypeMapping TypeName="RazzilModel.Step">
+              <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PreviousStepId" ColumnName="PreviousStepId" />
+                <ScalarProperty Name="CurrentStepId" ColumnName="CurrentStepId" />
+                <ScalarProperty Name="NextStepId1" ColumnName="NextStepId1" />
+                <ScalarProperty Name="NextStepId0" ColumnName="NextStepId0" />
+                <ScalarProperty Name="StepTypeId" ColumnName="StepTypeId" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="Encoding" ColumnName="Encoding" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="Pattern" ColumnName="Pattern" />
+                <ScalarProperty Name="XPath" ColumnName="XPath" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StepTypes">
+            <EntityTypeMapping TypeName="RazzilModel.StepType">
+              <MappingFragment StoreEntitySet="StepType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="RazzilModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

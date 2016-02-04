@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Workflow", "Razzil.Workflow\Razzil.Workflow.csproj", "{A27ECD52-27E0-4A1D-8BFF-4E2473716891}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.UnitTest", "Razzil.UnitTest\Razzil.UnitTest.csproj", "{305B3508-918D-404B-BF0F-DBC09DCA6805}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Models", "Razzil.Models\Razzil.Models.csproj", "{1088BAB7-500E-4B92-8F9E-6FD14E64E497}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Web", "Razzil.Web\Razzil.Web.csproj", "{4CC0F201-FE52-4D6D-B6C4-2FFF7E3188BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{1088BAB7-500E-4B92-8F9E-6FD14E64E497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1088BAB7-500E-4B92-8F9E-6FD14E64E497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1088BAB7-500E-4B92-8F9E-6FD14E64E497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC0F201-FE52-4D6D-B6C4-2FFF7E3188BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC0F201-FE52-4D6D-B6C4-2FFF7E3188BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC0F201-FE52-4D6D-B6C4-2FFF7E3188BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC0F201-FE52-4D6D-B6C4-2FFF7E3188BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

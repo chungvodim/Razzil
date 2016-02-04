@@ -33,7 +33,7 @@ namespace Razzil.Workflow
         //public StepFailedHandler OnStepFailed;
         private Step CreateNextStep()
         {
-            using (var db = new MainModel())
+            using (var db = new Entities())
             {
                 if (this.NextStepId != null)
                 {
@@ -62,7 +62,7 @@ namespace Razzil.Workflow
 
         protected void Initialize(int currentStepId, StepContext context)
         {
-            using (var db = new MainModel())
+            using (var db = new Entities())
             {
                 var step = db.Steps.Where(x => x.BankId == this.Context.BankId && x.CurrentStepId == this.CurrentStepId).FirstOrDefault();
                 this.CurrentStepId = currentStepId;
