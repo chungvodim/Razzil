@@ -9,14 +9,14 @@ namespace Razzil.Utils
 {
     public static class Html
     {
-        public static string GetNodeAttribute(string page, string xPath, string attribute)
+        public static string GetNodeAttribute(string page, string xPath, string attribute = "")
         {
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(page);
             var node = doc.DocumentNode.SelectSingleNode(xPath);
             if (node != null)
             {
-                return node.Attributes[attribute].Value;
+                return string.IsNullOrWhiteSpace(attribute) ? node.InnerText : node.Attributes[attribute].Value;
             }
             else
             {

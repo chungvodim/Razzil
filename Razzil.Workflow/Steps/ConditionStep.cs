@@ -22,7 +22,6 @@ namespace Razzil.Workflow
                 this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
                 if (this.Context.LastPage.Contains(this.Sign))
                 {
-                    this.NextStepId = 7;
                     return await base.Execute();
                 }
                 else

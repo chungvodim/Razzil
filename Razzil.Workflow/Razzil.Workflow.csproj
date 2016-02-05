@@ -50,17 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainObject.cs" />
-    <Compile Include="GetCaptchaStep.cs" />
-    <Compile Include="ConditionStep.cs" />
-    <Compile Include="RegexMatcherStep.cs" />
-    <Compile Include="HttpPostStep.cs" />
+    <Compile Include="Steps\GetCaptchaStep.cs" />
+    <Compile Include="Steps\ConditionStep.cs" />
+    <Compile Include="Steps\MatchingStep.cs" />
+    <Compile Include="Steps\HttpPostStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HttpGetStep.cs" />
+    <Compile Include="Steps\HttpGetStep.cs" />
     <Compile Include="StatusCode.cs" />
-    <Compile Include="Step.cs" />
+    <Compile Include="Steps\Step.cs" />
     <Compile Include="StepContext.cs" />
     <Compile Include="Workflow.cs" />
-    <Compile Include="XPathMatcherStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Razzil.DataAccess\Razzil.DataAccess.csproj">

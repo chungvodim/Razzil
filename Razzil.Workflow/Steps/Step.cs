@@ -16,12 +16,14 @@ namespace Razzil.Workflow
         protected int? PreviousStepId { get; set; }
         protected int CurrentStepId { get; set; }
         protected int? NextStepId { get; set; }
+        protected int? SecondNextStepId { get; set; }
         protected string Url { get; set; }
         protected string Key { get; set; }
         protected string Pattern { get; set; }
         protected string XPath { get; set; }
-        protected string Attribute { get; set; }
+        protected string XPathAttribute { get; set; }
         protected string Sign { get; set; }
+        protected bool IsConditionType { get; set; }
         protected Dictionary<string, string> QueryStrings { get; set; }
         protected Dictionary<string, string> Params { get; set; }
 
@@ -47,7 +49,7 @@ namespace Razzil.Workflow
                         {
                             case 1: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
                             case 2: nextStep = new HttpPostStep(this.NextStepId.Value, this.Context); break;
-                            case 3: nextStep = new RegexMatcherStep(this.NextStepId.Value, this.Context); break;
+                            case 3: nextStep = new MatchingStep(this.NextStepId.Value, this.Context); break;
                             default: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
                         }
                         return nextStep;
@@ -100,7 +102,9 @@ namespace Razzil.Workflow
                 this.Sign = step.Sign;
                 this.Pattern = step.Pattern;
                 this.XPath = step.XPath;
-                this.NextStepId = step.NextStepId0;
+                this.XPathAttribute = step.XPathAttribute;
+                this.NextStepId = step.NextStepId0;// default next step
+                this.SecondNextStepId = step.NextStepId1;// default next step
                 this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
                 this.Params = step.Params.InitHttpRequestParams(';');
             }
