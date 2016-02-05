@@ -12,8 +12,8 @@ namespace Razzil.IntegrationTest
         private static Workflow.Workflow workflow;
         static void Main(string[] args)
         {
-            StepContext stepContext = new StepContext();
-            Step firstStep = new GetRequestStep(1, stepContext);
+            StepContext stepContext = new StepContext("KBANK");
+            Step firstStep = new HttpGetStep(1, stepContext);
             workflow = new Workflow.Workflow(firstStep);
             workflow.OnStart += OnTransactionStart;
             workflow.OnSuccess += OnTransactionSuccess;

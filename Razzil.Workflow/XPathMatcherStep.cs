@@ -1,4 +1,5 @@
 ﻿using Razzil.Models;
+using Razzil.Utils;
 using Razzil.Workflow;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            this.NextStepId = 7;
-            if (this.Context.LastPage.Contains(this.Sign))
+            var result = Html.GetNodeAttribute(this.Context.LastPage, this.XPath, this.Attribute);
+            if (!string.IsNullOrWhiteSpace(result))
             {
                 return await base.Execute();
             }

@@ -28,7 +28,7 @@ namespace Razzil.DataAccess.Repository
         public string Sign { get; set; }
         public string Pattern { get; set; }
         public string XPath { get; set; }
-        public Nullable<int> TimeOut { get; set; }
+        public string QueyStrings { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual StepType StepType { get; set; }

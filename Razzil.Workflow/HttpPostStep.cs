@@ -8,21 +8,27 @@ using System.Threading.Tasks;
 
 namespace Razzil.Workflow
 {
-    public class GetRequestStep : Step
+    public class HttpPostStep : Step
     {
-
-        public GetRequestStep(int currentStepId, StepContext context)
+        public HttpPostStep(int currentStepId, StepContext context)
         {
             Initialize(currentStepId, context);
         }
         public override async Task<TransactionResult> Execute()
         {
-            using (var response = this.Client.GetAsync(this.Url).Result)
+            foreach (var key in this.Params.Keys)
+            {
+                if (!string.IsNullOrWhiteSpace(this.Context.Params[key]))
+                {
+                    Params[key] = this.Context.Params[key];
+                }
+            }
+            using (var response = this.Context.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result)
             {
                 this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
+                this.NextStepId = 7;
                 if (this.Context.LastPage.Contains(this.Sign))
                 {
-                    this.NextStepId = 7;
                     return await base.Execute();
                 }
                 else

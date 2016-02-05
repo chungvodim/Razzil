@@ -29,6 +29,7 @@ namespace Razzil.DataAccess.Repository
         public string Name { get; set; }
         public string FullName { get; set; }
         public Nullable<int> BankGroupId { get; set; }
+        public Nullable<int> TimeOut { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }

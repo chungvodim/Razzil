@@ -1,5 +1,6 @@
 ﻿using Razzil.DataAccess.Repository;
 using Razzil.Models;
+using Razzil.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,11 @@ namespace Razzil.Workflow
         protected string Key { get; set; }
         protected string Pattern { get; set; }
         protected string XPath { get; set; }
+        protected string Attribute { get; set; }
         protected string Sign { get; set; }
+        protected Dictionary<string, string> QueryStrings { get; set; }
         protected Dictionary<string, string> Params { get; set; }
 
-        protected HttpClient Client { get; set; }
 
         //public delegate void StepStartHandler();
         //public delegate void StepSuccessHandler();
@@ -37,16 +39,23 @@ namespace Razzil.Workflow
             {
                 if (this.NextStepId != null)
                 {
-                    int nextStepType = GetNextStepType();
-                    Step nextStep;
-                    switch (nextStepType)
+                    int? nextStepType = GetNextStepType(this.NextStepId);
+                    if(nextStepType != null)
                     {
-                        case 1: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
-                        case 2: nextStep = new PostRequestStep(this.NextStepId.Value, this.Context); break;
-                        case 3: nextStep = new RegexMatcherStep(this.NextStepId.Value, this.Context); break;
-                        default: nextStep = new GetRequestStep(this.NextStepId.Value, this.Context); break;
+                        Step nextStep;
+                        switch (nextStepType)
+                        {
+                            case 1: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
+                            case 2: nextStep = new HttpPostStep(this.NextStepId.Value, this.Context); break;
+                            case 3: nextStep = new RegexMatcherStep(this.NextStepId.Value, this.Context); break;
+                            default: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
+                        }
+                        return nextStep;
                     }
-                    return nextStep;
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
@@ -55,9 +64,27 @@ namespace Razzil.Workflow
             }
         }
 
-        private int GetNextStepType()
+        private int? GetNextStepType(int? nextStepId)
         {
-            return 1;
+            if(nextStepId != null)
+            {
+                using (var db = new Entities())
+                {
+                    var step = db.Steps.Where(x => x.BankId == this.Context.BankId && x.CurrentStepId == nextStepId).FirstOrDefault();
+                    if(step != null)
+                    {
+                        return step.StepTypeId;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
 
         protected void Initialize(int currentStepId, StepContext context)
@@ -73,13 +100,8 @@ namespace Razzil.Workflow
                 this.Sign = step.Sign;
                 this.Pattern = step.Pattern;
                 this.XPath = step.XPath;
-                string[] parameters = step.Params.Split(';');
-                this.Params = new Dictionary<string, string>();
-                for (int i = 0; i < parameters.Length; i++)
-                {
-                    this.Params[parameters[i]] = "";
-                }
-                this.Client = new HttpClient() { Timeout = new TimeSpan(0, 3, 0) };
+                this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
+                this.Params = step.Params.InitHttpRequestParams(';');
             }
                 
         }

@@ -4,6 +4,7 @@
 	[BankId] VARCHAR(20) NULL,
 	[Name] VARCHAR(100) NOT NULL,
 	[FullName] VARCHAR(100) NULL,
+	[TimeOut] INT NULL DEFAULT 120,
 	[BankGroupId] INT NULL,
 	CONSTRAINT FK_Bank_BankGroup FOREIGN KEY([BankGroupId]) REFERENCES Bank([Id]),
 )
