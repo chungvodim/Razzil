@@ -22,7 +22,6 @@ namespace Razzil.Workflow
             if (parseValue.IsSuccessful)
             {
                 this.Context.Params.Add(this.Key,parseValue.Value);
-                this.NextStepId = 7;
                 return await base.Execute();
             }
             else

@@ -100,6 +100,7 @@ namespace Razzil.Workflow
                 this.Sign = step.Sign;
                 this.Pattern = step.Pattern;
                 this.XPath = step.XPath;
+                this.NextStepId = step.NextStepId0;
                 this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
                 this.Params = step.Params.InitHttpRequestParams(';');
             }
