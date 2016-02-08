@@ -67,6 +67,14 @@
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="InputType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Step">
           <Key>
             <PropertyRef Name="Id" />
@@ -76,6 +84,7 @@
           <Property Name="CurrentStepId" Type="int" Nullable="false" />
           <Property Name="NextStepId1" Type="int" />
           <Property Name="NextStepId0" Type="int" />
+          <Property Name="InputTypeId" Type="int" />
           <Property Name="StepTypeId" Type="int" Nullable="false" />
           <Property Name="BankId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
@@ -189,6 +198,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Step_InputType">
+          <End Role="InputType" Type="Self.InputType" Multiplicity="0..1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InputType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="InputTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Step_StepType">
           <End Role="StepType" Type="Self.StepType" Multiplicity="1" />
           <End Role="Step" Type="Self.Step" Multiplicity="*" />
@@ -207,6 +228,7 @@
           <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankGroup" EntityType="Self.BankGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankTransaction" EntityType="Self.BankTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InputType" EntityType="Self.InputType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StepType" EntityType="Self.StepType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
@@ -236,6 +258,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Step_Bank" Association="Self.FK_Step_Bank">
             <End Role="Bank" EntitySet="Bank" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_InputType" Association="Self.FK_Step_InputType">
+            <End Role="InputType" EntitySet="InputType" />
             <End Role="Step" EntitySet="Step" />
           </AssociationSet>
           <AssociationSet Name="FK_Step_StepType" Association="Self.FK_Step_StepType">
@@ -344,6 +370,8 @@
           <Property Name="QueyStrings" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="XPathAttribute" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsConditionType" Type="Boolean" />
+          <Property Name="InputTypeId" Type="Int32" />
+          <NavigationProperty Name="InputType" Relationship="RazzilModel.FK_Step_InputType" FromRole="Step" ToRole="InputType" />
         </EntityType>
         <EntityType Name="StepType">
           <Key>
@@ -500,7 +528,33 @@
             <End Role="StepType" EntitySet="StepTypes" />
             <End Role="Step" EntitySet="Steps" />
           </AssociationSet>
+          <EntitySet Name="InputTypes" EntityType="RazzilModel.InputType" />
+          <AssociationSet Name="FK_Step_InputType" Association="RazzilModel.FK_Step_InputType">
+            <End Role="InputType" EntitySet="InputTypes" />
+            <End Role="Step" EntitySet="Steps" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="InputType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Steps" Relationship="RazzilModel.FK_Step_InputType" FromRole="InputType" ToRole="Step" />
+        </EntityType>
+        <Association Name="FK_Step_InputType">
+          <End Type="RazzilModel.InputType" Role="InputType" Multiplicity="0..1" />
+          <End Type="RazzilModel.Step" Role="Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InputType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="InputTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -577,6 +631,7 @@
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="RazzilModel.Step">
               <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="InputTypeId" ColumnName="InputTypeId" />
                 <ScalarProperty Name="IsConditionType" ColumnName="IsConditionType" />
                 <ScalarProperty Name="XPathAttribute" ColumnName="XPathAttribute" />
                 <ScalarProperty Name="QueyStrings" ColumnName="QueyStrings" />
@@ -612,6 +667,15 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputTypes">
+            <EntityTypeMapping TypeName="RazzilModel.InputType">
+              <MappingFragment StoreEntitySet="InputType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

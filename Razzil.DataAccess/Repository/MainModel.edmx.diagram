@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="RazzilModel.BankGroup" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.BankTransaction" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.Step" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.StepType" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.StepType" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.TransactionType" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
         <AssociationConnector Association="RazzilModel.FK_Account_AccountGroup" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Account_Bank" ManuallyRouted="false" />
@@ -21,6 +21,8 @@
         <AssociationConnector Association="RazzilModel.FK_Step_Bank" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_BankTransaction_TransactionType" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Step_StepType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RazzilModel.InputType" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="RazzilModel.FK_Step_InputType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

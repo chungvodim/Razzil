@@ -1,4 +1,5 @@
-﻿using Razzil.Models;
+﻿using OpenQA.Selenium;
+using Razzil.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,24 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            this.Context.WebDriver.Navigate().GoToUrl(this.Url);
-            this.Context.LastPage = this.Context.WebDriver.PageSource;
+            var inputElement = this.Context.WebDriver.FindElement(By.XPath(this.XPath));
+            switch (this.InputType)
+            {
+                case "UserName":
+                    inputElement.SendKeys(this.Context.TransactionModel.UserName);
+                    break;
+                case "Password":
+                    inputElement.SendKeys(this.Context.TransactionModel.Password);
+                    break;
+                case "Captcha": break;
+                case "OTP": break;
+                case "FromAccountName": break;
+                case "FromAccountNumber": break;
+                case "ToAccountName": break;
+                case "ToAccountNumber": break;
+                case "Amount": break;
+            }
+            inputElement.SendKeys(this.Name);
             if (this.Context.LastPage.Contains(this.Sign))
             {
                 return await base.Execute();

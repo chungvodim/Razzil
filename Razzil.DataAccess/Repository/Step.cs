@@ -31,8 +31,10 @@ namespace Razzil.DataAccess.Repository
         public string QueyStrings { get; set; }
         public string XPathAttribute { get; set; }
         public Nullable<bool> IsConditionType { get; set; }
+        public Nullable<int> InputTypeId { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual StepType StepType { get; set; }
+        public virtual InputType InputType { get; set; }
     }
 }

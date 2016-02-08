@@ -5,6 +5,7 @@
 	[CurrentStepId] int NOT NULL, 
 	[NextStepId1] int NULL, 
 	[NextStepId0] int NULL, 
+	[InputTypeId] int NULL, 
 	[StepTypeId] int NOT NULL, 
     [BankId] INT NOT NULL, 
     [Name] VARCHAR(100) NULL, 
@@ -19,4 +20,5 @@
 	IsConditionType BIT NULL DEFAULT 0,
 	CONSTRAINT FK_Step_StepType FOREIGN KEY([StepTypeId]) REFERENCES StepType([Id]),
 	CONSTRAINT FK_Step_Bank FOREIGN KEY([BankId]) REFERENCES Bank([Id]),
+	CONSTRAINT FK_Step_InputType FOREIGN KEY([InputTypeId]) REFERENCES InputType([Id]),
 )

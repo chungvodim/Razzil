@@ -68,6 +68,7 @@
     <Build Include="AccountGroup.sql" />
     <Build Include="Bank.sql" />
     <Build Include="BankGroup.sql" />
+    <Build Include="InputType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Razzil.Database.publish.xml" />

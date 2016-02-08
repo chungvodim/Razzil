@@ -17,6 +17,7 @@ namespace Razzil.Workflow
         protected int CurrentStepId { get; set; }
         protected int? NextStepId { get; set; }
         protected int? SecondNextStepId { get; set; }
+        protected string InputType { get; set; }
         protected string Url { get; set; }
         protected string Key { get; set; }
         protected string Pattern { get; set; }
@@ -72,7 +73,7 @@ namespace Razzil.Workflow
             {
                 using (var db = new Entities())
                 {
-                    var step = db.Steps.Where(x => x.BankId == this.Context.BankId && x.CurrentStepId == nextStepId).FirstOrDefault();
+                    var step = db.Steps.Where(x => x.Bank.Name == this.Context.BankName && x.CurrentStepId == nextStepId).FirstOrDefault();
                     if(step != null)
                     {
                         return step.StepTypeId;
@@ -93,7 +94,7 @@ namespace Razzil.Workflow
         {
             using (var db = new Entities())
             {
-                var step = db.Steps.Where(x => x.BankId == this.Context.BankId && x.CurrentStepId == this.CurrentStepId).FirstOrDefault();
+                var step = db.Steps.Where(x => x.Bank.Name == this.Context.BankName && x.CurrentStepId == this.CurrentStepId).FirstOrDefault();
                 this.CurrentStepId = currentStepId;
                 this.Context = context;
                 this.Name = step.Name;
@@ -105,6 +106,7 @@ namespace Razzil.Workflow
                 this.XPathAttribute = step.XPathAttribute;
                 this.NextStepId = step.NextStepId0;// default next step
                 this.SecondNextStepId = step.NextStepId1;// default next step
+                this.InputType = step.InputType.Name;
                 this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
                 this.Params = step.Params.InitHttpRequestParams(';');
             }

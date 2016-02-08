@@ -10,6 +10,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using NLog;
 using OpenQA.Selenium.PhantomJS;
+using Razzil.Models;
 
 namespace Razzil.Workflow
 {
@@ -19,6 +20,9 @@ namespace Razzil.Workflow
         {
             using (var db = new Entities())
             {
+                // To Do: Init TransactionModel
+                //this.TransactionModel = 
+                this.BankName = bankName;
                 var bank = db.Banks.Where(x => x.Name == bankName).FirstOrDefault();
                 if(bank != null)
                 {
@@ -36,11 +40,11 @@ namespace Razzil.Workflow
         public WebDriverWait WaitDriver { get; private set; }
         public WebDriverWait ShortWaitDriver { get; private set; }
         public HttpClient Client { get; private set; }
-        public int BankId { get; set; }
+        public string BankName { get; set; }
         public string LastPage { get; set; }
         public StatusCode StatusCode { get; set; }
         public bool IsSuccessful { get; set; }
-        public BankTransactionModel TransferModel { get; set; }
+        public BankTransactionModel TransactionModel { get; set; }
         public Encoding Encoding { get; set; }
         public Dictionary<string, string> Params { get; set; }
     }
