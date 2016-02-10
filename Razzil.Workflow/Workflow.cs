@@ -34,7 +34,7 @@ namespace Razzil.Workflow
                 switch (result)
                 {
                     case TransactionResult.Failed: OnFail(this.Step); break;
-                    case TransactionResult.Inprogress: OnFail(this.Step); break;
+                    case TransactionResult.Inprogress: OnInprogress(this.Step); break;
                     case TransactionResult.Successful: OnSuccess(this.Step); break;
                 }
             }
@@ -48,6 +48,7 @@ namespace Razzil.Workflow
                 {
                     this.Step.Context.StatusCode = StatusCode.UNKNOWN;
                 }
+                OnFail(this.Step);
             }
         }
     }
