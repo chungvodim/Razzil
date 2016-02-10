@@ -1,4 +1,5 @@
-﻿using Razzil.Models;
+﻿using OpenQA.Selenium;
+using Razzil.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,27 @@ namespace Razzil.Workflow
 
         public async void Execute()
         {
-            OnStart(this.Step);
-            var result = await this.Step.Execute();
-            switch (result)
+            try
             {
-                case TransactionResult.Failed: OnFail(this.Step); break;
-                case TransactionResult.Inprogress: OnFail(this.Step); break;
-                case TransactionResult.Successful: OnSuccess(this.Step); break;
+                OnStart(this.Step);
+                var result = await this.Step.Execute();
+                switch (result)
+                {
+                    case TransactionResult.Failed: OnFail(this.Step); break;
+                    case TransactionResult.Inprogress: OnFail(this.Step); break;
+                    case TransactionResult.Successful: OnSuccess(this.Step); break;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.GetType() == typeof(WebDriverTimeoutException))
+                {
+                    this.Step.Context.StatusCode = StatusCode.TIMEOUT_ERROR;
+                }
+                else
+                {
+                    this.Step.Context.StatusCode = StatusCode.UNKNOWN;
+                }
             }
         }
     }

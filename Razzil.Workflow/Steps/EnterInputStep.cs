@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Razzil.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            var inputElement = this.Context.WebDriver.FindElement(By.XPath(this.XPath));
+
+            var inputElement = this.Context.WaitDriver.Until(ExpectedConditions.ElementIsVisible(By.XPath(this.XPath)));
             switch (this.InputType)
             {
                 case "UserName":
@@ -27,21 +29,38 @@ namespace Razzil.Workflow
                 case "Password":
                     inputElement.SendKeys(this.Context.TransactionModel.Password);
                     break;
-                case "Captcha": break;
-                case "OTP": break;
-                case "FromAccountName": break;
-                case "FromAccountNumber": break;
-                case "ToAccountName": break;
-                case "ToAccountNumber": break;
-                case "Amount": break;
+                case "Captcha":
+                    inputElement.SendKeys(this.Context.TransactionModel.Captcha);
+                    break;
+                case "OTP":
+                    inputElement.SendKeys(this.Context.TransactionModel.OTP);
+                    break;
+                case "FromAccountName":
+                    inputElement.SendKeys(this.Context.TransactionModel.FromAccountName);
+                    break;
+                case "FromAccountNumber":
+                    inputElement.SendKeys(this.Context.TransactionModel.FromAccountNumber);
+                    break;
+                case "ToAccountName":
+                    inputElement.SendKeys(this.Context.TransactionModel.ToAccountName);
+                    break;
+                case "ToAccountNumber":
+                    inputElement.SendKeys(this.Context.TransactionModel.ToAccountNumber);
+                    break;
+                case "Content":
+                    inputElement.SendKeys(this.Context.TransactionModel.Content);
+                    break;
+                case "Amount":
+                    inputElement.SendKeys(this.Context.TransactionModel.Amount.ToString());
+                    break;
             }
-            inputElement.SendKeys(this.Name);
             if (this.Context.LastPage.Contains(this.Sign))
             {
                 return await base.Execute();
             }
             else
             {
+                this.Context.StatusCode = StatusCode.BANK_PAGE_CHANGED;
                 return TransactionResult.Failed;
             }
         }

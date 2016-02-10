@@ -12,7 +12,7 @@ namespace Razzil.Workflow
 {
     public abstract class Step : DomainObject
     {
-        protected StepContext Context { get; set; }
+        public StepContext Context { get; set; }
         protected int? PreviousStepId { get; set; }
         protected int CurrentStepId { get; set; }
         protected int? NextStepId { get; set; }

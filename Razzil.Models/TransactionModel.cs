@@ -14,6 +14,7 @@ namespace Razzil.Models
         public string FromAccountNumber { get; set; }
         public string ToAccountName { get; set; }
         public string ToAccountNumber { get; set; }
+        public string Content { get; set; }
         public decimal Amount { get; set; }
         public string ToBankId { get; set; }
         public string Captcha { get; set; }

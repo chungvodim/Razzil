@@ -44,7 +44,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,10 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainObject.cs" />
+    <Compile Include="Steps\ClickStep.cs" />
     <Compile Include="Steps\EnterInputStep.cs" />
+    <Compile Include="Steps\EnterPageStep.cs" />
     <Compile Include="Steps\GetCaptchaStep.cs" />
     <Compile Include="Steps\ConditionStep.cs" />
-    <Compile Include="Steps\EnterPageStep.cs" />
     <Compile Include="Steps\MatchingStep.cs" />
     <Compile Include="Steps\HttpPostStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

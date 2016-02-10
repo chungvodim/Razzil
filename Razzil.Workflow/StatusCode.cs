@@ -38,5 +38,6 @@ namespace Razzil.Workflow
         SESSION_TIMEOUT_AFTER_OTP = 426,
         SESSION_TIMEOUT_AFTER_SUCCEED = 427,
         UNABLE_ENQUIRE_BALANCE_AFTER_SUCCEED = 428,
+        TIMEOUT_ERROR = 429,
     }
 }
