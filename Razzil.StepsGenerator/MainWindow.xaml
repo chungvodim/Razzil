@@ -1,0 +1,12 @@
+﻿<Window x:Class="Razzil.StepsGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBox Name="NotificationTextBox" AcceptsReturn="True" HorizontalAlignment="Left" 
+                     Height="auto" Margin="34,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="auto" MinHeight="23" MinWidth="120"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
