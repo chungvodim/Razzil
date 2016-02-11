@@ -8,6 +8,6 @@
 	[LastUpdatedTime] DATETIME NULL,
 	[CreatedByUserID] INT NOT NULL DEFAULT 1,
 	[LastUpdatedByUserID] INT NOT NULL DEFAULT 1,
-	--CONSTRAINT FK_Role_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),
-	--CONSTRAINT FK_Role_User_1 FOREIGN KEY([LastUpdatedByUserID]) REFERENCES [dbo].[User]([Id]),
+	CONSTRAINT FK_Role_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),
+	CONSTRAINT FK_Role_User_1 FOREIGN KEY([LastUpdatedByUserID]) REFERENCES [dbo].[User]([Id]),
 )
