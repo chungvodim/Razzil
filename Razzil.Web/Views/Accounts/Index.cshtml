@@ -42,16 +42,16 @@
             @Html.DisplayNameFor(model => model.Bank.BankId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserRole.Name)
+            @Html.DisplayNameFor(model => model.UserRole.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserRole1.Name)
+            @Html.DisplayNameFor(model => model.UserRole1.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Name)
+            @Html.DisplayNameFor(model => model.User.Password)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User1.Name)
+            @Html.DisplayNameFor(model => model.User1.Password)
         </th>
         <th></th>
     </tr>
@@ -89,16 +89,16 @@
             @Html.DisplayFor(modelItem => item.Bank.BankId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserRole.Name)
+            @Html.DisplayFor(modelItem => item.UserRole.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserRole1.Name)
+            @Html.DisplayFor(modelItem => item.UserRole1.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
+            @Html.DisplayFor(modelItem => item.User.Password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User1.Name)
+            @Html.DisplayFor(modelItem => item.User1.Password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

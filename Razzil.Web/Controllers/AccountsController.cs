@@ -41,10 +41,10 @@ namespace Razzil.Web.Controllers
         {
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name");
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId");
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description");
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description");
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password");
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password");
             return View();
         }
 
@@ -64,10 +64,10 @@ namespace Razzil.Web.Controllers
 
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", account.LastUpdatedByUserID);
             return View(account);
         }
 
@@ -85,10 +85,10 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", account.LastUpdatedByUserID);
             return View(account);
         }
 
@@ -107,10 +107,10 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", account.LastUpdatedByUserID);
             return View(account);
         }
 
