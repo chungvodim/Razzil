@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[TransactionType]
+﻿CREATE TABLE [dbo].[UserRole]
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
     [NAME] VARCHAR(50) NOT NULL,
@@ -8,6 +8,6 @@
 	[LastUpdatedTime] DATETIME NULL,
 	[CreatedByUserID] INT NOT NULL,
 	[LastUpdatedByUserID] INT NOT NULL,
-	CONSTRAINT FK_TransactionType_User FOREIGN KEY([CreatedByUserID]) REFERENCES UserRole([Id]),
-	CONSTRAINT FK_TransactionType_Role_User_1 FOREIGN KEY([LastUpdatedByUserID]) REFERENCES UserRole([Id]),
+	CONSTRAINT FK_Role_User FOREIGN KEY([CreatedByUserID]) REFERENCES UserRole([Id]),
+	CONSTRAINT FK_Role_User_1 FOREIGN KEY([LastUpdatedByUserID]) REFERENCES UserRole([Id]),
 )
