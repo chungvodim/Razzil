@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Razzil.Utils
 {
-    public static class Html
+    public static class HtmlHelper
     {
         public static string GetNodeAttribute(string page, string xPath, string attribute = "")
         {

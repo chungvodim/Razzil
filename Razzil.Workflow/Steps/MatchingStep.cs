@@ -19,7 +19,7 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            var content = string.IsNullOrWhiteSpace(this.XPath) ? this.Context.LastPage : Html.GetNodeAttribute(this.Context.LastPage, this.XPath, this.XPathAttribute);
+            var content = string.IsNullOrWhiteSpace(this.XPath) ? this.Context.LastPage : HtmlHelper.GetNodeAttribute(this.Context.LastPage, this.XPath, this.XPathAttribute);
             var parseValue = ParseValue(content, this.Pattern);
             if (parseValue.IsSuccessful)
             {
