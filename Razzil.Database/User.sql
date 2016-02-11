@@ -9,5 +9,7 @@
 	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[LastUpdatedTime] DATETIME NULL,
+	[CreatedByUserID] INT NULL,
+	[LastUpdatedByUserID] INT NULL,
 	CONSTRAINT FK_User_Role FOREIGN KEY([RoleId]) REFERENCES UserRole([Id]),
 )
