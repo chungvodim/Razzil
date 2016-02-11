@@ -30,10 +30,28 @@
             @Html.DisplayNameFor(model => model.Active)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedTime)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.AccountGroup.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Bank.BankId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.Name)
         </th>
         <th></th>
     </tr>
@@ -59,10 +77,28 @@
             @Html.DisplayFor(modelItem => item.Active)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.CreatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedTime)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.AccountGroup.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Bank.BankId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

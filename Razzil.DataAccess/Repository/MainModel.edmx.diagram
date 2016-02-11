@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56d197a826c64277a19b4e518f3f9e0d" Name="Diagram1">
-        <EntityTypeShape EntityType="RazzilModel.Account" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.AccountGroup" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+      <Diagram DiagramId="56d197a826c64277a19b4e518f3f9e0d" Name="Diagram1" ShowGrid="false">
+        <EntityTypeShape EntityType="RazzilModel.Account" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.AccountGroup" Width="1.5" PointX="5.125" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.Bank" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RazzilModel.BankGroup" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.BankTransaction" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.Step" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.StepType" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RazzilModel.TransactionType" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.BankTransaction" Width="1.5" PointX="13.125" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.Step" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.StepType" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RazzilModel.TransactionType" Width="1.5" PointX="9" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="RazzilModel.FK_Account_AccountGroup" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Account_Bank" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Bank_BankGroup" ManuallyRouted="false" />
@@ -21,8 +21,49 @@
         <AssociationConnector Association="RazzilModel.FK_Step_Bank" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_BankTransaction_TransactionType" ManuallyRouted="false" />
         <AssociationConnector Association="RazzilModel.FK_Step_StepType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="RazzilModel.InputType" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="RazzilModel.InputType" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="RazzilModel.FK_Step_InputType" />
+        <EntityTypeShape EntityType="RazzilModel.User" Width="1.5" PointX="10.75" PointY="0.625" />
+        <EntityTypeShape EntityType="RazzilModel.UserRole" Width="1.5" PointX="7.875" PointY="2.75" />
+        <AssociationConnector Association="RazzilModel.FK_Account_User" />
+        <AssociationConnector Association="RazzilModel.FK_Account_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_AccountGroup_User" />
+        <AssociationConnector Association="RazzilModel.FK_AccountGroup_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_BankGroup_User" />
+        <AssociationConnector Association="RazzilModel.FK_BankGroup_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_BankTransaction_User" />
+        <AssociationConnector Association="RazzilModel.FK_BankTransaction_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_InputType_User" />
+        <AssociationConnector Association="RazzilModel.FK_InputType_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_Step_User" />
+        <AssociationConnector Association="RazzilModel.FK_Step_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_StepType_User" />
+        <AssociationConnector Association="RazzilModel.FK_StepType_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_TransactionType_Role_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_TransactionType_User" />
+        <AssociationConnector Association="RazzilModel.FK_User_Role" />
+        <AssociationConnector Association="RazzilModel.FK_Role_User" />
+        <AssociationConnector Association="RazzilModel.FK_Role_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_Account_User1" />
+        <AssociationConnector Association="RazzilModel.FK_Account_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_AccountGroup_User1" />
+        <AssociationConnector Association="RazzilModel.FK_AccountGroup_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_User" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_BankGroup_User1" />
+        <AssociationConnector Association="RazzilModel.FK_BankGroup_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_BankTransaction_User1" />
+        <AssociationConnector Association="RazzilModel.FK_BankTransaction_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_InputType_User1" />
+        <AssociationConnector Association="RazzilModel.FK_InputType_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_Step_User1" />
+        <AssociationConnector Association="RazzilModel.FK_Step_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_StepType_User1" />
+        <AssociationConnector Association="RazzilModel.FK_StepType_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_TransactionType_Role_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_TransactionType_User1" />
+        <AssociationConnector Association="RazzilModel.FK_Role_User1" />
+        <AssociationConnector Association="RazzilModel.FK_Role_User_11" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -23,15 +23,28 @@ namespace Razzil.DataAccess.Repository
         public Nullable<int> ToBankId { get; set; }
         public Nullable<decimal> Amount { get; set; }
         public Nullable<decimal> BankCharge { get; set; }
-        public Nullable<decimal> CurrentBalance { get; set; }
         public string Otp { get; set; }
         public string OtpRef { get; set; }
         public string LastPage { get; set; }
         public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string FromAccountName { get; set; }
+        public string ToAccountName { get; set; }
+        public string Content { get; set; }
+        public string Captcha { get; set; }
+        public Nullable<decimal> Balance { get; set; }
+        public Nullable<bool> Active { get; set; }
+        public int CreatedByUserID { get; set; }
+        public int LastUpdatedByUserID { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual Bank Bank1 { get; set; }
         public virtual TransactionType TransactionType { get; set; }
+        public virtual UserRole UserRole { get; set; }
+        public virtual UserRole UserRole1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

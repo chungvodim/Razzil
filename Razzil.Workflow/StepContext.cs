@@ -37,6 +37,7 @@ namespace Razzil.Workflow
 
         public Logger Logger { get; private set; }
         public ChromeDriver WebDriver { get; private set; }
+        //public PhantomJSDriver WebDriver { get; private set; }
         public WebDriverWait WaitDriver { get; private set; }
         public WebDriverWait ShortWaitDriver { get; private set; }
         public HttpClient Client { get; private set; }

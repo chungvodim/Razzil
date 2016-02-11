@@ -120,15 +120,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountGroupsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BankGroupsController.cs" />
+    <Compile Include="Controllers\BanksController.cs" />
+    <Compile Include="Controllers\BankTransactionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InputTypesController.cs" />
+    <Compile Include="Controllers\StepsController.cs" />
     <Compile Include="Controllers\StepTypesController.cs" />
+    <Compile Include="Controllers\TransactionTypesController.cs" />
+    <Compile Include="Controllers\UserRolesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CustomPrincipal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -137,6 +149,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -174,15 +194,58 @@
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\UserRoles\Create.cshtml" />
+    <Content Include="Views\UserRoles\Delete.cshtml" />
+    <Content Include="Views\UserRoles\Details.cshtml" />
+    <Content Include="Views\UserRoles\Edit.cshtml" />
+    <Content Include="Views\UserRoles\Index.cshtml" />
+    <Content Include="Views\AccountGroups\Create.cshtml" />
+    <Content Include="Views\AccountGroups\Delete.cshtml" />
+    <Content Include="Views\AccountGroups\Details.cshtml" />
+    <Content Include="Views\AccountGroups\Edit.cshtml" />
+    <Content Include="Views\AccountGroups\Index.cshtml" />
+    <Content Include="Views\Banks\Create.cshtml" />
+    <Content Include="Views\Banks\Delete.cshtml" />
+    <Content Include="Views\Banks\Details.cshtml" />
+    <Content Include="Views\Banks\Edit.cshtml" />
+    <Content Include="Views\Banks\Index.cshtml" />
+    <Content Include="Views\BankGroups\Create.cshtml" />
+    <Content Include="Views\BankGroups\Delete.cshtml" />
+    <Content Include="Views\BankGroups\Details.cshtml" />
+    <Content Include="Views\BankGroups\Edit.cshtml" />
+    <Content Include="Views\BankGroups\Index.cshtml" />
+    <Content Include="Views\BankTransactions\Create.cshtml" />
+    <Content Include="Views\BankTransactions\Delete.cshtml" />
+    <Content Include="Views\BankTransactions\Details.cshtml" />
+    <Content Include="Views\BankTransactions\Edit.cshtml" />
+    <Content Include="Views\BankTransactions\Index.cshtml" />
+    <Content Include="Views\InputTypes\Create.cshtml" />
+    <Content Include="Views\InputTypes\Delete.cshtml" />
+    <Content Include="Views\InputTypes\Details.cshtml" />
+    <Content Include="Views\InputTypes\Edit.cshtml" />
+    <Content Include="Views\InputTypes\Index.cshtml" />
+    <Content Include="Views\Steps\Create.cshtml" />
+    <Content Include="Views\Steps\Delete.cshtml" />
+    <Content Include="Views\Steps\Details.cshtml" />
+    <Content Include="Views\Steps\Edit.cshtml" />
+    <Content Include="Views\Steps\Index.cshtml" />
+    <Content Include="Views\TransactionTypes\Create.cshtml" />
+    <Content Include="Views\TransactionTypes\Delete.cshtml" />
+    <Content Include="Views\TransactionTypes\Details.cshtml" />
+    <Content Include="Views\TransactionTypes\Edit.cshtml" />
+    <Content Include="Views\TransactionTypes\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -190,6 +253,10 @@
     <ProjectReference Include="..\Razzil.DataAccess\Razzil.DataAccess.csproj">
       <Project>{ec031a5d-5c78-4c98-80e8-b35c1f855317}</Project>
       <Name>Razzil.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Razzil.Utils\Razzil.Utils.csproj">
+      <Project>{f886540f-a012-4bf1-bcae-80f1697f183a}</Project>
+      <Name>Razzil.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

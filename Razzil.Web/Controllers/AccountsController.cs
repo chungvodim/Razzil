@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            var accounts = db.Accounts.Include(a => a.AccountGroup).Include(a => a.Bank);
+            var accounts = db.Accounts.Include(a => a.AccountGroup).Include(a => a.Bank).Include(a => a.UserRole).Include(a => a.UserRole1).Include(a => a.User).Include(a => a.User1);
             return View(accounts.ToList());
         }
 
@@ -41,6 +41,10 @@ namespace Razzil.Web.Controllers
         {
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name");
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId");
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
         }
 
@@ -49,7 +53,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,Active")] Account account)
+        public ActionResult Create([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +64,10 @@ namespace Razzil.Web.Controllers
 
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
             return View(account);
         }
 
@@ -77,6 +85,10 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
             return View(account);
         }
 
@@ -85,7 +97,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,Active")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +107,10 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.AccountGroupId = new SelectList(db.AccountGroups, "Id", "Name", account.AccountGroupId);
             ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", account.BankId);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", account.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", account.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", account.LastUpdatedByUserID);
             return View(account);
         }
 

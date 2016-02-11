@@ -1,0 +1,210 @@
+﻿@model Razzil.DataAccess.Repository.Step
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Step</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PreviousStepId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreviousStepId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentStepId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentStepId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextStepId1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextStepId1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextStepId0)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextStepId0)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Params)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Params)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encoding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encoding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pattern)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pattern)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueyStrings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueyStrings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XPathAttribute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XPathAttribute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsConditionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsConditionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank.BankId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank.BankId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InputType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InputType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -34,5 +34,7 @@ namespace Razzil.DataAccess.Repository
         public virtual DbSet<StepType> StepTypes { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
         public virtual DbSet<InputType> InputTypes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }

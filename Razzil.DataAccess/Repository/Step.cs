@@ -32,9 +32,18 @@ namespace Razzil.DataAccess.Repository
         public string XPathAttribute { get; set; }
         public Nullable<bool> IsConditionType { get; set; }
         public Nullable<int> InputTypeId { get; set; }
+        public Nullable<bool> Active { get; set; }
+        public Nullable<System.DateTime> CreatedTime { get; set; }
+        public Nullable<System.DateTime> LastUpdatedTime { get; set; }
+        public int CreatedByUserID { get; set; }
+        public int LastUpdatedByUserID { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual StepType StepType { get; set; }
         public virtual InputType InputType { get; set; }
+        public virtual UserRole UserRole { get; set; }
+        public virtual UserRole UserRole1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

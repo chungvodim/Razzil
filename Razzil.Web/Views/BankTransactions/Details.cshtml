@@ -1,0 +1,218 @@
+﻿@model Razzil.DataAccess.Repository.BankTransaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BankTransaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromAccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToAccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Otp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Otp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtpRef)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtpRef)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromAccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromAccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToAccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToAccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Captcha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Captcha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank.BankId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank.BankId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank1.BankId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank1.BankId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

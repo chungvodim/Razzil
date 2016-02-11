@@ -1,0 +1,177 @@
+﻿@model IEnumerable<Razzil.DataAccess.Repository.BankTransaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtpRef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastPage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromAccountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToAccountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Captcha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank.BankId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank1.BankId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Otp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtpRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastPage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromAccountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToAccountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Captcha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank.BankId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank1.BankId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -9,5 +9,9 @@
 	[Active] BIT NOT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NOT NULL DEFAULT GETDATE(),
 	[LastUpdatedTime] DATETIME NULL,
+	[CreatedByUserID] INT NOT NULL,
+	[LastUpdatedByUserID] INT NOT NULL,
+	CONSTRAINT FK_Bank_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),
+	CONSTRAINT FK_Bank_User_1 FOREIGN KEY([LastUpdatedByUserID]) REFERENCES [dbo].[User]([Id]),
 	CONSTRAINT FK_Bank_BankGroup FOREIGN KEY([BankGroupId]) REFERENCES Bank([Id]),
 )

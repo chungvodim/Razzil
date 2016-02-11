@@ -30,6 +30,11 @@ namespace Razzil.DataAccess.Repository
         public string FullName { get; set; }
         public Nullable<int> BankGroupId { get; set; }
         public Nullable<int> TimeOut { get; set; }
+        public bool Active { get; set; }
+        public System.DateTime CreatedTime { get; set; }
+        public Nullable<System.DateTime> LastUpdatedTime { get; set; }
+        public int CreatedByUserID { get; set; }
+        public int LastUpdatedByUserID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
@@ -42,5 +47,7 @@ namespace Razzil.DataAccess.Repository
         public virtual ICollection<BankTransaction> BankTransactions1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Step> Steps { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

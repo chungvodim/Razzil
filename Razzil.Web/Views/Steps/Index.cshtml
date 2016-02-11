@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Razzil.DataAccess.Repository.Step>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PreviousStepId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentStepId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextStepId1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextStepId0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Params)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Encoding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.XPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QueyStrings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.XPathAttribute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsConditionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank.BankId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InputType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreviousStepId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentStepId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextStepId1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextStepId0)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Params)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Encoding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pattern)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.XPath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueyStrings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.XPathAttribute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsConditionType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank.BankId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InputType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
