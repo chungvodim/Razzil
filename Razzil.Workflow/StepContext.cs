@@ -11,6 +11,7 @@ using OpenQA.Selenium.Support.UI;
 using NLog;
 using OpenQA.Selenium.PhantomJS;
 using Razzil.Models;
+using OpenQA.Selenium;
 
 namespace Razzil.Workflow
 {
@@ -27,9 +28,28 @@ namespace Razzil.Workflow
                 if(bank != null)
                 {
                     Logger = LogManager.GetCurrentClassLogger();
-                    WebDriver = new ChromeDriver();
+                    bool isDebugMode = false;
+                    if (isDebugMode)
+                    {
+                        WebDriver = new ChromeDriver();
+                    }
+                    else
+                    {
+                        PhantomJSOptions options = new PhantomJSOptions();
+                        if (!string.IsNullOrWhiteSpace(bank.UserAgent))
+                        {
+                            //"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+                            options.AddAdditionalCapability("phantomjs.page.settings.userAgent", bank.UserAgent);
+                        }
+                        PhantomJSDriverService defaultService = PhantomJSDriverService.CreateDefaultService();
+                        defaultService.HideCommandPromptWindow = true;
+                        defaultService.LoadImages = false;
+                        WebDriver = new PhantomJSDriver(defaultService, options);
+                    }
+                    
                     WaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value));
                     ShortWaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value / 2));
+
                     Client = new HttpClient() { Timeout = new TimeSpan(0, 0, bank.TimeOut.Value) };
                     TransactionModel = new BankTransactionModel();
                 }
@@ -37,8 +57,7 @@ namespace Razzil.Workflow
         }
 
         public Logger Logger { get; private set; }
-        public ChromeDriver WebDriver { get; private set; }
-        //public PhantomJSDriver WebDriver { get; private set; }
+        public IWebDriver WebDriver { get; private set; }
         public WebDriverWait WaitDriver { get; private set; }
         public WebDriverWait ShortWaitDriver { get; private set; }
         public HttpClient Client { get; private set; }

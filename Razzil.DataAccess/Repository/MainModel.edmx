@@ -46,6 +46,7 @@
           <Property Name="FullName" Type="varchar" MaxLength="100" />
           <Property Name="TimeOut" Type="int" />
           <Property Name="BankGroupId" Type="int" />
+          <Property Name="UserAgent" Type="varchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
@@ -751,6 +752,7 @@
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_Bank_User" FromRole="Bank" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_Bank_User_1" FromRole="Bank" ToRole="User" />
           <NavigationProperty Name="BankGroup" Relationship="RazzilModel.FK_Bank_BankGroup1" FromRole="Bank" ToRole="BankGroup" />
+          <Property Name="UserAgent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="BankGroup">
           <Key>
@@ -1805,6 +1807,7 @@
           <EntitySetMapping Name="Banks">
             <EntityTypeMapping TypeName="RazzilModel.Bank">
               <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
                 <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />

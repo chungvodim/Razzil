@@ -35,6 +35,7 @@ namespace Razzil.DataAccess.Repository
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
+        public string UserAgent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
