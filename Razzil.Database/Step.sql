@@ -20,7 +20,7 @@
 	IsConditionType BIT NULL DEFAULT 0,
 	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
-	[LastUpdatedTime] DATETIME NULL,
+	[LastUpdatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[CreatedByUserID] INT NOT NULL,
 	[LastUpdatedByUserID] INT NOT NULL,
 	CONSTRAINT FK_Step_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),

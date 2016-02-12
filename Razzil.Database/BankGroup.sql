@@ -4,7 +4,7 @@
 	[Name] VARCHAR(100) NOT NULL,
 	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
-	[LastUpdatedTime] DATETIME NULL,
+	[LastUpdatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[CreatedByUserID] INT NOT NULL,
 	[LastUpdatedByUserID] INT NOT NULL,
 	CONSTRAINT FK_BankGroup_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),

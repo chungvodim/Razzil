@@ -54,15 +54,8 @@ namespace Razzil.Workflow
                     inputElement.SendKeys(this.Context.TransactionModel.Amount.ToString());
                     break;
             }
-            if (this.Context.LastPage.Contains(this.Sign))
-            {
-                return await base.Execute();
-            }
-            else
-            {
-                this.Context.StatusCode = StatusCode.BANK_PAGE_CHANGED;
-                return TransactionResult.Failed;
-            }
+
+            return await base.Execute();
         }
     }
 }

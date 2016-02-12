@@ -47,7 +47,7 @@
           <Property Name="TimeOut" Type="int" />
           <Property Name="BankGroupId" Type="int" />
           <Property Name="Active" Type="bit" />
-          <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="int" Nullable="false" />
@@ -261,13 +261,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bank_BankGroup">
-          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
-          <End Role="Bank1" Type="Self.Bank" Multiplicity="*" />
+          <End Role="BankGroup" Type="Self.BankGroup" Multiplicity="0..1" />
+          <End Role="Bank" Type="Self.Bank" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Bank">
+            <Principal Role="BankGroup">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Bank1">
+            <Dependent Role="Bank">
               <PropertyRef Name="BankGroupId" />
             </Dependent>
           </ReferentialConstraint>
@@ -585,8 +585,8 @@
             <End Role="AccountGroup" EntitySet="AccountGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_Bank_BankGroup" Association="Self.FK_Bank_BankGroup">
+            <End Role="BankGroup" EntitySet="BankGroup" />
             <End Role="Bank" EntitySet="Bank" />
-            <End Role="Bank1" EntitySet="Bank" />
           </AssociationSet>
           <AssociationSet Name="FK_Bank_User" Association="Self.FK_Bank_User">
             <End Role="User" EntitySet="User" />
@@ -744,12 +744,13 @@
           <NavigationProperty Name="Steps" Relationship="Self.FK_Step_Bank" FromRole="Bank" ToRole="Step" />
           <Property Name="TimeOut" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
-          <Property Name="CreatedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
           <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
           <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_Bank_User" FromRole="Bank" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_Bank_User_1" FromRole="Bank" ToRole="User" />
+          <NavigationProperty Name="BankGroup" Relationship="RazzilModel.FK_Bank_BankGroup1" FromRole="Bank" ToRole="BankGroup" />
         </EntityType>
         <EntityType Name="BankGroup">
           <Key>
@@ -766,6 +767,7 @@
           <NavigationProperty Name="UserRole1" Relationship="RazzilModel.FK_BankGroup_User_1" FromRole="BankGroup" ToRole="UserRole" />
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_BankGroup_User1" FromRole="BankGroup" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_BankGroup_User_11" FromRole="BankGroup" ToRole="User" />
+          <NavigationProperty Name="Banks" Relationship="RazzilModel.FK_Bank_BankGroup1" FromRole="BankGroup" ToRole="Bank" />
         </EntityType>
         <EntityType Name="BankTransaction">
           <Key>
@@ -1172,6 +1174,10 @@
           <AssociationSet Name="FK_Role_User_11" Association="RazzilModel.FK_Role_User_11">
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bank_BankGroup1" Association="RazzilModel.FK_Bank_BankGroup1">
+            <End Role="BankGroup" EntitySet="BankGroups" />
+            <End Role="Bank" EntitySet="Banks" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="InputType">
@@ -1742,6 +1748,18 @@
             </Principal>
             <Dependent Role="UserRole">
               <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bank_BankGroup1">
+          <End Type="RazzilModel.BankGroup" Role="BankGroup" Multiplicity="0..1" />
+          <End Type="RazzilModel.Bank" Role="Bank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="BankGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

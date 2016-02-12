@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PreviousStepId)
         </th>
         <th>
@@ -22,9 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NextStepId0)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Url)
@@ -63,7 +63,7 @@
             @Html.DisplayNameFor(model => model.LastUpdatedTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Bank.BankId)
+            @Html.DisplayNameFor(model => model.Bank.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StepType.Name)
@@ -89,6 +89,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.PreviousStepId)
         </td>
         <td>
@@ -99,9 +102,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NextStepId0)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Url)
@@ -140,7 +140,7 @@
             @Html.DisplayFor(modelItem => item.LastUpdatedTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Bank.BankId)
+            @Html.DisplayFor(modelItem => item.Bank.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StepType.Name)

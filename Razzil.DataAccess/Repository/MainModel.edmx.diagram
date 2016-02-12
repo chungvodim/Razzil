@@ -64,6 +64,7 @@
         <AssociationConnector Association="RazzilModel.FK_TransactionType_User1" />
         <AssociationConnector Association="RazzilModel.FK_Role_User1" />
         <AssociationConnector Association="RazzilModel.FK_Role_User_11" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_BankGroup1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

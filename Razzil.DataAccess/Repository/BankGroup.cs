@@ -14,6 +14,12 @@ namespace Razzil.DataAccess.Repository
     
     public partial class BankGroup
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BankGroup()
+        {
+            this.Banks = new HashSet<Bank>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<bool> Active { get; set; }
@@ -26,5 +32,7 @@ namespace Razzil.DataAccess.Repository
         public virtual UserRole UserRole1 { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bank> Banks { get; set; }
     }
 }

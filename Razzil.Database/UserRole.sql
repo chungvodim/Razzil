@@ -5,7 +5,7 @@
 	[Description] VARCHAR(100) NULL,
 	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
-	[LastUpdatedTime] DATETIME NULL,
+	[LastUpdatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[CreatedByUserID] INT NOT NULL DEFAULT 1,
 	[LastUpdatedByUserID] INT NOT NULL DEFAULT 1,
 	CONSTRAINT FK_Role_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),

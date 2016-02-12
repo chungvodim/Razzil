@@ -39,7 +39,7 @@ namespace Razzil.Web.Controllers
         // GET: Steps/Create
         public ActionResult Create()
         {
-            ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId");
+            ViewBag.BankId = new SelectList(db.Banks, "Id", "Name");
             ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name");
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
@@ -54,7 +54,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Name,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
+        public ActionResult Create([Bind(Include = "Id,Name,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", step.BankId);
+            ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
             ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);
@@ -85,7 +85,7 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", step.BankId);
+            ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
             ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);
@@ -100,7 +100,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Name,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
+        public ActionResult Edit([Bind(Include = "Id,Name,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BankId = new SelectList(db.Banks, "Id", "BankId", step.BankId);
+            ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
             ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);

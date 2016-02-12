@@ -31,7 +31,7 @@ namespace Razzil.DataAccess.Repository
         public Nullable<int> BankGroupId { get; set; }
         public Nullable<int> TimeOut { get; set; }
         public Nullable<bool> Active { get; set; }
-        public System.DateTime CreatedTime { get; set; }
+        public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
@@ -49,5 +49,6 @@ namespace Razzil.DataAccess.Repository
         public virtual ICollection<Step> Steps { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        public virtual BankGroup BankGroup { get; set; }
     }
 }

@@ -48,10 +48,13 @@ namespace Razzil.Workflow
                         Step nextStep;
                         switch (nextStepType)
                         {
-                            case 1: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
-                            case 2: nextStep = new HttpPostStep(this.NextStepId.Value, this.Context); break;
-                            case 3: nextStep = new MatchingStep(this.NextStepId.Value, this.Context); break;
-                            default: nextStep = new HttpGetStep(this.NextStepId.Value, this.Context); break;
+                            case 1: nextStep = new EnterPageStep(this.NextStepId.Value, this.Context); break;
+                            case 2: nextStep = new EnterInputStep(this.NextStepId.Value, this.Context); break;
+                            case 3: nextStep = new ClickStep(this.NextStepId.Value, this.Context); break;
+                            case 4: nextStep = new MatchingStep(this.NextStepId.Value, this.Context); break;
+                            case 5: nextStep = new GetCaptchaStep(this.NextStepId.Value, this.Context); break;
+                            case 6: nextStep = new GetOTPStep(this.NextStepId.Value, this.Context); break;
+                            default: nextStep = new EnterPageStep(this.NextStepId.Value, this.Context); break;
                         }
                         return nextStep;
                     }

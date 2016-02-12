@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: Banks
         public ActionResult Index()
         {
-            var banks = db.Banks.Include(b => b.Bank2).Include(b => b.User).Include(b => b.User1);
+            var banks = db.Banks.Include(b => b.Bank2).Include(b => b.User).Include(b => b.User1).Include(b => b.BankGroup);
             return View(banks.ToList());
         }
 
@@ -42,6 +42,7 @@ namespace Razzil.Web.Controllers
             ViewBag.BankGroupId = new SelectList(db.Banks, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
+            ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name");
             return View();
         }
 
@@ -62,6 +63,7 @@ namespace Razzil.Web.Controllers
             ViewBag.BankGroupId = new SelectList(db.Banks, "Id", "Name", bank.BankGroupId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
+            ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
             return View(bank);
         }
 
@@ -80,6 +82,7 @@ namespace Razzil.Web.Controllers
             ViewBag.BankGroupId = new SelectList(db.Banks, "Id", "Name", bank.BankGroupId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
+            ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
             return View(bank);
         }
 
@@ -99,6 +102,7 @@ namespace Razzil.Web.Controllers
             ViewBag.BankGroupId = new SelectList(db.Banks, "Id", "Name", bank.BankGroupId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
+            ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
             return View(bank);
         }
 

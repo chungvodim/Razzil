@@ -20,7 +20,7 @@
     [Balance] DECIMAL NULL, 
 	[LastPage] NVARCHAR(MAX) NULL,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
-	[LastUpdatedTime] DATETIME NULL, 
+	[LastUpdatedTime] DATETIME NULL DEFAULT GETDATE(), 
 	[CreatedByUserID] INT NOT NULL,
 	[LastUpdatedByUserID] INT NOT NULL,
 	CONSTRAINT FK_BankTransaction_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),

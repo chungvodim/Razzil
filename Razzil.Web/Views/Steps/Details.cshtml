@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.PreviousStepId)
         </dt>
 
@@ -40,14 +48,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.NextStepId0)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
@@ -147,11 +147,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Bank.BankId)
+            @Html.DisplayNameFor(model => model.Bank.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Bank.BankId)
+            @Html.DisplayFor(model => model.Bank.Name)
         </dd>
 
         <dt>

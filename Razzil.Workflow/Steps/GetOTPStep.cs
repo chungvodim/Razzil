@@ -2,16 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Razzil.Workflow
 {
-    public class ConditionStep : Step
+    public class GetOTPStep : Step
     {
-
-        public ConditionStep(int currentStepId, StepContext context)
+        public GetOTPStep(int currentStepId, StepContext context)
         {
             Initialize(currentStepId, context);
         }
@@ -19,7 +17,7 @@ namespace Razzil.Workflow
         {
             using (var response = this.Context.Client.GetAsync(this.Url).Result)
             {
-                this.Context.LastPage = response.Content.ReadAsStringAsync().Result;
+                this.Context.LastPage = await response.Content.ReadAsStringAsync();
                 if (this.Context.LastPage.Contains(this.Sign))
                 {
                     return await base.Execute();

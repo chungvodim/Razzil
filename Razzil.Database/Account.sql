@@ -10,7 +10,7 @@
     [Balance] DECIMAL NULL, 
     [Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
-	[LastUpdatedTime] DATETIME NULL, 
+	[LastUpdatedTime] DATETIME NULL DEFAULT GETDATE(), 
 	[CreatedByUserID] INT NOT NULL,
 	[LastUpdatedByUserID] INT NOT NULL,
 	CONSTRAINT FK_Account_User FOREIGN KEY([CreatedByUserID]) REFERENCES [dbo].[User]([Id]),

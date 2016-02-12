@@ -62,8 +62,8 @@
     <Compile Include="Steps\ClickStep.cs" />
     <Compile Include="Steps\EnterInputStep.cs" />
     <Compile Include="Steps\EnterPageStep.cs" />
+    <Compile Include="Steps\GetOTPStep.cs" />
     <Compile Include="Steps\GetCaptchaStep.cs" />
-    <Compile Include="Steps\ConditionStep.cs" />
     <Compile Include="Steps\MatchingStep.cs" />
     <Compile Include="Steps\HttpPostStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
