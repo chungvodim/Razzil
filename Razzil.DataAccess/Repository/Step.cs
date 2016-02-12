@@ -15,13 +15,13 @@ namespace Razzil.DataAccess.Repository
     public partial class Step
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public Nullable<int> PreviousStepId { get; set; }
         public int CurrentStepId { get; set; }
         public Nullable<int> NextStepId1 { get; set; }
         public Nullable<int> NextStepId0 { get; set; }
         public int StepTypeId { get; set; }
         public int BankId { get; set; }
-        public string Name { get; set; }
         public string Url { get; set; }
         public string Params { get; set; }
         public string Encoding { get; set; }

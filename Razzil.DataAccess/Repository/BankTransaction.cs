@@ -35,7 +35,6 @@ namespace Razzil.DataAccess.Repository
         public string Content { get; set; }
         public string Captcha { get; set; }
         public Nullable<decimal> Balance { get; set; }
-        public Nullable<bool> Active { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
     

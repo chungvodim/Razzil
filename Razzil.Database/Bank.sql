@@ -6,7 +6,7 @@
 	[FullName] VARCHAR(100) NULL,
 	[TimeOut] INT NULL DEFAULT 120,
 	[BankGroupId] INT NULL,
-	[Active] BIT NOT NULL DEFAULT 1,
+	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NOT NULL DEFAULT GETDATE(),
 	[LastUpdatedTime] DATETIME NULL,
 	[CreatedByUserID] INT NOT NULL,

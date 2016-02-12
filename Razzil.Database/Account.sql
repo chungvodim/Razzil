@@ -8,7 +8,7 @@
     [Password] VARCHAR(50) NULL, 
     [Phone] VARCHAR(20) NULL, 
     [Balance] DECIMAL NULL, 
-    [Active] BIT NOT NULL DEFAULT 1,
+    [Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[LastUpdatedTime] DATETIME NULL, 
 	[CreatedByUserID] INT NOT NULL,

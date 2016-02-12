@@ -40,6 +40,7 @@ namespace Razzil.DataAccess.Repository
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public byte[] Avatar { get; set; }
@@ -49,7 +50,6 @@ namespace Razzil.DataAccess.Repository
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public Nullable<int> CreatedByUserID { get; set; }
         public Nullable<int> LastUpdatedByUserID { get; set; }
-        public string Name { get; set; }
     
         public virtual UserRole UserRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

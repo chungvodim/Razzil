@@ -46,7 +46,7 @@
           <Property Name="FullName" Type="varchar" MaxLength="100" />
           <Property Name="TimeOut" Type="int" />
           <Property Name="BankGroupId" Type="int" />
-          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" Nullable="false" />
           <Property Name="LastUpdatedTime" Type="datetime" />
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
@@ -57,9 +57,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BankId" Type="varchar" MaxLength="20" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FullName" Type="varchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
@@ -89,7 +87,6 @@
           <Property Name="BankCharge" Type="decimal" Precision="8" Scale="0" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LastPage" Type="nvarchar(max)" />
-          <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
@@ -407,6 +404,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Role_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_User_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Step_Bank">
           <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
           <End Role="Step" Type="Self.Step" Multiplicity="*" />
@@ -611,6 +632,14 @@
             <End Role="User" EntitySet="User" />
             <End Role="InputType" EntitySet="InputType" />
           </AssociationSet>
+          <AssociationSet Name="FK_Role_User" Association="Self.FK_Role_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_User_1" Association="Self.FK_Role_User_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
           <AssociationSet Name="FK_Step_Bank" Association="Self.FK_Step_Bank">
             <End Role="Bank" EntitySet="Bank" />
             <End Role="Step" EntitySet="Step" />
@@ -661,10 +690,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BankId" Type="Int32" Nullable="false" />
-          <Property Name="AccountGroupId" Type="Int32" />
           <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+          <Property Name="AccountGroupId" Type="Int32" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
@@ -703,9 +732,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BankId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="BankGroupId" Type="Int32" />
           <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Bank" FromRole="Bank" ToRole="Account" />
           <NavigationProperty Name="Bank1" Relationship="Self.FK_Bank_BankGroup" FromRole="Bank" ToRole="Bank1" />
@@ -714,7 +743,7 @@
           <NavigationProperty Name="BankTransactions1" Relationship="Self.FK_BankTransaction_Bank1" FromRole="Bank" ToRole="BankTransaction" />
           <NavigationProperty Name="Steps" Relationship="Self.FK_Step_Bank" FromRole="Bank" ToRole="Step" />
           <Property Name="TimeOut" Type="Int32" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
           <Property Name="CreatedTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
           <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
@@ -727,9 +756,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BankId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="CreatedTime" Type="DateTime" Precision="3" />
           <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
@@ -768,7 +795,6 @@
           <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Captcha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Active" Type="Boolean" />
           <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserRole" Relationship="RazzilModel.FK_BankTransaction_User" FromRole="BankTransaction" ToRole="UserRole" />
@@ -781,13 +807,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PreviousStepId" Type="Int32" />
           <Property Name="CurrentStepId" Type="Int32" Nullable="false" />
           <Property Name="NextStepId1" Type="Int32" />
           <Property Name="NextStepId0" Type="Int32" />
           <Property Name="StepTypeId" Type="Int32" Nullable="false" />
           <Property Name="BankId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Params" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Encoding" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1183,6 +1209,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -1213,13 +1240,13 @@
           <NavigationProperty Name="TransactionTypes1" Relationship="RazzilModel.FK_TransactionType_User1" FromRole="User" ToRole="TransactionType" />
           <NavigationProperty Name="UserRoles" Relationship="RazzilModel.FK_Role_User1" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserRoles1" Relationship="RazzilModel.FK_Role_User_11" FromRole="User" ToRole="UserRole" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="CreatedTime" Type="DateTime" Precision="3" />
@@ -1249,7 +1276,6 @@
           <NavigationProperty Name="UserRole3" Relationship="RazzilModel.FK_Role_User_1" FromRole="UserRole1" ToRole="UserRole" />
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_Role_User1" FromRole="UserRole" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_Role_User_11" FromRole="UserRole" ToRole="User" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Account_User">
           <End Type="RazzilModel.UserRole" Role="UserRole" Multiplicity="1" />
@@ -1784,9 +1810,7 @@
                 <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BankId" ColumnName="BankId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1795,7 +1819,6 @@
               <MappingFragment StoreEntitySet="BankTransaction">
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="Captcha" ColumnName="Captcha" />
                 <ScalarProperty Name="Content" ColumnName="Content" />

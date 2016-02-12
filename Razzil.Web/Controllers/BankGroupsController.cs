@@ -51,7 +51,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BankId,Name,FullName,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankGroup bankGroup)
+        public ActionResult Create([Bind(Include = "Id,Name,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankGroup bankGroup)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BankId,Name,FullName,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankGroup bankGroup)
+        public ActionResult Edit([Bind(Include = "Id,Name,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankGroup bankGroup)
         {
             if (ModelState.IsValid)
             {

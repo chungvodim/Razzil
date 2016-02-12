@@ -25,12 +25,12 @@ namespace Razzil.DataAccess.Repository
         }
     
         public int Id { get; set; }
-        public string BankId { get; set; }
         public string Name { get; set; }
         public string FullName { get; set; }
+        public string BankId { get; set; }
         public Nullable<int> BankGroupId { get; set; }
         public Nullable<int> TimeOut { get; set; }
-        public bool Active { get; set; }
+        public Nullable<bool> Active { get; set; }
         public System.DateTime CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public int CreatedByUserID { get; set; }

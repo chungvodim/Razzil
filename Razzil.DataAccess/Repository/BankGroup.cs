@@ -15,9 +15,7 @@ namespace Razzil.DataAccess.Repository
     public partial class BankGroup
     {
         public int Id { get; set; }
-        public string BankId { get; set; }
         public string Name { get; set; }
-        public string FullName { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }

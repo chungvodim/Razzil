@@ -18,7 +18,7 @@
 	[XPath] VARCHAR(100) NULL,
 	[XPathAttribute] VARCHAR(20) NULL,
 	IsConditionType BIT NULL DEFAULT 0,
-	[Active] BIT NOT NULL DEFAULT 1,
+	[Active] BIT NULL DEFAULT 1,
 	[CreatedTime] DATETIME NULL DEFAULT GETDATE(),
 	[LastUpdatedTime] DATETIME NULL,
 	[CreatedByUserID] INT NOT NULL,

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Razzil.Utils
 {
-    public static sealed class CryptographyHelper {
+    public static class CryptographyHelper {
 
         public static string MD5(string source, int offset = 0, int count = -1) {
             using (var algorithm = System.Security.Cryptography.MD5.Create()) {

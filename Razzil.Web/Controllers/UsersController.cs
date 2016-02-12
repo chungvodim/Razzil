@@ -39,7 +39,7 @@ namespace Razzil.Web.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Description");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Password,Email,Avatar,RoleId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] User user)
+        public ActionResult Create([Bind(Include = "Id,Password,Email,Avatar,RoleId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID,Name")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Name", user.RoleId);
+            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Description", user.RoleId);
             return View(user);
         }
 
@@ -73,7 +73,7 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Name", user.RoleId);
+            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Description", user.RoleId);
             return View(user);
         }
 
@@ -82,7 +82,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Password,Email,Avatar,RoleId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] User user)
+        public ActionResult Edit([Bind(Include = "Id,Password,Email,Avatar,RoleId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID,Name")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Name", user.RoleId);
+            ViewBag.RoleId = new SelectList(db.UserRoles, "Id", "Description", user.RoleId);
             return View(user);
         }
 

@@ -75,5 +75,6 @@
   <ItemGroup>
     <None Include="Razzil.Database.publish.xml" />
     <None Include="Snapshots\Razzil.Database_20160203_22-36-19.dacpac" />
+    <None Include="Snapshots\Razzil.Database_20160212_09-35-42.dacpac" />
   </ItemGroup>
 </Project>
