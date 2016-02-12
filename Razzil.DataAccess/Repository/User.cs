@@ -37,6 +37,8 @@ namespace Razzil.DataAccess.Repository
             this.TransactionTypes1 = new HashSet<TransactionType>();
             this.UserRoles = new HashSet<UserRole>();
             this.UserRoles1 = new HashSet<UserRole>();
+            this.WebBrowsers = new HashSet<WebBrowser>();
+            this.WebBrowsers1 = new HashSet<WebBrowser>();
         }
     
         public int Id { get; set; }
@@ -92,5 +94,9 @@ namespace Razzil.DataAccess.Repository
         public virtual ICollection<UserRole> UserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WebBrowser> WebBrowsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WebBrowser> WebBrowsers1 { get; set; }
     }
 }

@@ -28,23 +28,26 @@ namespace Razzil.Workflow
                 if(bank != null)
                 {
                     Logger = LogManager.GetCurrentClassLogger();
-                    bool isDebugMode = false;
-                    if (isDebugMode)
+                    switch (bank.WebBrowser.Name.ToLower())
                     {
-                        WebDriver = new ChromeDriver();
-                    }
-                    else
-                    {
-                        PhantomJSOptions options = new PhantomJSOptions();
-                        if (!string.IsNullOrWhiteSpace(bank.UserAgent))
-                        {
-                            //"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
-                            options.AddAdditionalCapability("phantomjs.page.settings.userAgent", bank.UserAgent);
-                        }
-                        PhantomJSDriverService defaultService = PhantomJSDriverService.CreateDefaultService();
-                        defaultService.HideCommandPromptWindow = true;
-                        defaultService.LoadImages = false;
-                        WebDriver = new PhantomJSDriver(defaultService, options);
+                        case "chrome":
+                            WebDriver = new ChromeDriver();
+                            break;
+                        case "phantomjs":
+                            PhantomJSOptions options = new PhantomJSOptions();
+                            if (!string.IsNullOrWhiteSpace(bank.UserAgent))
+                            {
+                                //"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36"
+                                options.AddAdditionalCapability("phantomjs.page.settings.userAgent", bank.UserAgent);
+                            }
+                            PhantomJSDriverService defaultService = PhantomJSDriverService.CreateDefaultService();
+                            defaultService.HideCommandPromptWindow = true;
+                            defaultService.LoadImages = false;
+                            WebDriver = new PhantomJSDriver(defaultService, options);
+                            break;
+                        default:
+                            WebDriver = new ChromeDriver();
+                            break;
                     }
                     
                     WaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value));

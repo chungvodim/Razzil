@@ -65,6 +65,11 @@
         <AssociationConnector Association="RazzilModel.FK_Role_User1" />
         <AssociationConnector Association="RazzilModel.FK_Role_User_11" />
         <AssociationConnector Association="RazzilModel.FK_Bank_BankGroup1" />
+        <EntityTypeShape EntityType="RazzilModel.WebBrowser" Width="1.5" PointX="13" PointY="1.875" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_WebBrowser" />
+        <AssociationConnector Association="RazzilModel.FK_WebBrowser_User" />
+        <AssociationConnector Association="RazzilModel.FK_WebBrowser_User_1" />
+        <AssociationConnector Association="RazzilModel.FK_Bank_WebBrowser1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

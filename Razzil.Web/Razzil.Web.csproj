@@ -132,6 +132,7 @@
     <Compile Include="Controllers\TransactionTypesController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WebBrowsersController.cs" />
     <Compile Include="CustomPrincipal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,11 @@
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\WebBrowsers\Create.cshtml" />
+    <Content Include="Views\WebBrowsers\Delete.cshtml" />
+    <Content Include="Views\WebBrowsers\Details.cshtml" />
+    <Content Include="Views\WebBrowsers\Edit.cshtml" />
+    <Content Include="Views\WebBrowsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

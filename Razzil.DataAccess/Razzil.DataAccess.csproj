@@ -99,6 +99,9 @@
     <Compile Include="Repository\UserRole.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\WebBrowser.cs">
+      <DependentUpon>MainModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

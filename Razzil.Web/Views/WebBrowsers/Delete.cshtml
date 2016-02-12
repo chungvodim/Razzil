@@ -1,4 +1,4 @@
-﻿@model Razzil.DataAccess.Repository.Bank
+﻿@model Razzil.DataAccess.Repository.WebBrowser
 
 @{
     ViewBag.Title = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Bank</h4>
+    <h4>WebBrowser</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,27 +20,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.DisplayNameFor(model => model.Version)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FullName)
+            @Html.DisplayFor(model => model.Version)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BankId)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BankId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeOut)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeOut)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>
@@ -68,22 +60,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserAgent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bank2.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bank2.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.User.Name)
         </dt>
 
@@ -97,30 +73,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.User1.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BankGroup.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BankGroup.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WebBrowser.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WebBrowser.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WebBrowser1.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WebBrowser1.Name)
         </dd>
 
     </dl>

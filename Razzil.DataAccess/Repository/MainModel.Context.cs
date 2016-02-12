@@ -36,5 +36,6 @@ namespace Razzil.DataAccess.Repository
         public virtual DbSet<InputType> InputTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<WebBrowser> WebBrowsers { get; set; }
     }
 }

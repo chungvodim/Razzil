@@ -41,8 +41,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BankId" Type="varchar" MaxLength="20" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BankId" Type="varchar" MaxLength="20" />
+          <Property Name="WebBrowserId" Type="int" />
           <Property Name="FullName" Type="varchar" MaxLength="100" />
           <Property Name="TimeOut" Type="int" />
           <Property Name="BankGroupId" Type="int" />
@@ -189,6 +190,20 @@
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="WebBrowser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Version" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CreatedTime" Type="datetime" />
+          <Property Name="LastUpdatedTime" Type="datetime" />
+          <Property Name="CreatedByUserID" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedByUserID" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Account_AccountGroup">
           <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -294,6 +309,18 @@
             </Principal>
             <Dependent Role="Bank">
               <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bank_WebBrowser">
+          <End Role="WebBrowser" Type="Self.WebBrowser" Multiplicity="0..1" />
+          <End Role="Bank" Type="Self.Bank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebBrowser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="WebBrowserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -549,6 +576,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WebBrowser_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="WebBrowser" Type="Self.WebBrowser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebBrowser">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebBrowser_User_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="WebBrowser" Type="Self.WebBrowser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebBrowser">
+              <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RazzilModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountGroup" EntityType="Self.AccountGroup" Schema="dbo" store:Type="Tables" />
@@ -561,6 +612,7 @@
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebBrowser" EntityType="Self.WebBrowser" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_AccountGroup" Association="Self.FK_Account_AccountGroup">
             <End Role="AccountGroup" EntitySet="AccountGroup" />
             <End Role="Account" EntitySet="Account" />
@@ -595,6 +647,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Bank_User_1" Association="Self.FK_Bank_User_1">
             <End Role="User" EntitySet="User" />
+            <End Role="Bank" EntitySet="Bank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bank_WebBrowser" Association="Self.FK_Bank_WebBrowser">
+            <End Role="WebBrowser" EntitySet="WebBrowser" />
             <End Role="Bank" EntitySet="Bank" />
           </AssociationSet>
           <AssociationSet Name="FK_BankGroup_User" Association="Self.FK_BankGroup_User">
@@ -681,6 +737,14 @@
             <End Role="UserRole" EntitySet="UserRole" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <AssociationSet Name="FK_WebBrowser_User" Association="Self.FK_WebBrowser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="WebBrowser" EntitySet="WebBrowser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebBrowser_User_1" Association="Self.FK_WebBrowser_User_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="WebBrowser" EntitySet="WebBrowser" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -753,6 +817,9 @@
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_Bank_User_1" FromRole="Bank" ToRole="User" />
           <NavigationProperty Name="BankGroup" Relationship="RazzilModel.FK_Bank_BankGroup1" FromRole="Bank" ToRole="BankGroup" />
           <Property Name="UserAgent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WebBrowserId" Type="Int32" />
+          <NavigationProperty Name="WebBrowser" Relationship="RazzilModel.FK_Bank_WebBrowser" FromRole="Bank" ToRole="WebBrowser" />
+          <NavigationProperty Name="WebBrowser1" Relationship="RazzilModel.FK_Bank_WebBrowser1" FromRole="Bank" ToRole="WebBrowser" />
         </EntityType>
         <EntityType Name="BankGroup">
           <Key>
@@ -1181,6 +1248,23 @@
             <End Role="BankGroup" EntitySet="BankGroups" />
             <End Role="Bank" EntitySet="Banks" />
           </AssociationSet>
+          <EntitySet Name="WebBrowsers" EntityType="RazzilModel.WebBrowser" />
+          <AssociationSet Name="FK_Bank_WebBrowser" Association="RazzilModel.FK_Bank_WebBrowser">
+            <End Role="WebBrowser" EntitySet="WebBrowsers" />
+            <End Role="Bank" EntitySet="Banks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebBrowser_User" Association="RazzilModel.FK_WebBrowser_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="WebBrowser" EntitySet="WebBrowsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebBrowser_User_1" Association="RazzilModel.FK_WebBrowser_User_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="WebBrowser" EntitySet="WebBrowsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bank_WebBrowser1" Association="RazzilModel.FK_Bank_WebBrowser1">
+            <End Role="WebBrowser" EntitySet="WebBrowsers" />
+            <End Role="Bank" EntitySet="Banks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="InputType">
           <Key>
@@ -1248,6 +1332,8 @@
           <NavigationProperty Name="TransactionTypes1" Relationship="RazzilModel.FK_TransactionType_User1" FromRole="User" ToRole="TransactionType" />
           <NavigationProperty Name="UserRoles" Relationship="RazzilModel.FK_Role_User1" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserRoles1" Relationship="RazzilModel.FK_Role_User_11" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="WebBrowsers" Relationship="RazzilModel.FK_WebBrowser_User" FromRole="User" ToRole="WebBrowser" />
+          <NavigationProperty Name="WebBrowsers1" Relationship="RazzilModel.FK_WebBrowser_User_1" FromRole="User" ToRole="WebBrowser" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -1765,6 +1851,72 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WebBrowser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedByUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Banks" Relationship="RazzilModel.FK_Bank_WebBrowser" FromRole="WebBrowser" ToRole="Bank" />
+          <NavigationProperty Name="User" Relationship="RazzilModel.FK_WebBrowser_User" FromRole="WebBrowser" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="RazzilModel.FK_WebBrowser_User_1" FromRole="WebBrowser" ToRole="User" />
+          <NavigationProperty Name="Banks1" Relationship="RazzilModel.FK_Bank_WebBrowser1" FromRole="WebBrowser" ToRole="Bank" />
+        </EntityType>
+        <Association Name="FK_Bank_WebBrowser">
+          <End Type="RazzilModel.WebBrowser" Role="WebBrowser" Multiplicity="1" />
+          <End Type="RazzilModel.Bank" Role="Bank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebBrowser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebBrowser_User">
+          <End Type="RazzilModel.User" Role="User" Multiplicity="1" />
+          <End Type="RazzilModel.WebBrowser" Role="WebBrowser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebBrowser">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebBrowser_User_1">
+          <End Type="RazzilModel.User" Role="User" Multiplicity="1" />
+          <End Type="RazzilModel.WebBrowser" Role="WebBrowser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebBrowser">
+              <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bank_WebBrowser1">
+          <End Type="RazzilModel.WebBrowser" Role="WebBrowser" Multiplicity="0..1" />
+          <End Type="RazzilModel.Bank" Role="Bank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebBrowser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bank">
+              <PropertyRef Name="WebBrowserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1807,6 +1959,7 @@
           <EntitySetMapping Name="Banks">
             <EntityTypeMapping TypeName="RazzilModel.Bank">
               <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="WebBrowserId" ColumnName="WebBrowserId" />
                 <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
@@ -1962,6 +2115,21 @@
                 <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebBrowsers">
+            <EntityTypeMapping TypeName="RazzilModel.WebBrowser">
+              <MappingFragment StoreEntitySet="WebBrowser">
+                <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

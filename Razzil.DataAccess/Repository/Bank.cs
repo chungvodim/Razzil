@@ -36,6 +36,7 @@ namespace Razzil.DataAccess.Repository
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
         public string UserAgent { get; set; }
+        public Nullable<int> WebBrowserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
@@ -51,5 +52,7 @@ namespace Razzil.DataAccess.Repository
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
         public virtual BankGroup BankGroup { get; set; }
+        public virtual WebBrowser WebBrowser { get; set; }
+        public virtual WebBrowser WebBrowser1 { get; set; }
     }
 }

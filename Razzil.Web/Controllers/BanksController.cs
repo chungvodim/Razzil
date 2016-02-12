@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: Banks
         public ActionResult Index()
         {
-            var banks = db.Banks.Include(b => b.Bank2).Include(b => b.User).Include(b => b.User1).Include(b => b.BankGroup);
+            var banks = db.Banks.Include(b => b.Bank2).Include(b => b.User).Include(b => b.User1).Include(b => b.BankGroup).Include(b => b.WebBrowser).Include(b => b.WebBrowser1);
             return View(banks.ToList());
         }
 
@@ -43,6 +43,7 @@ namespace Razzil.Web.Controllers
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name");
+            ViewBag.WebBrowserId = new SelectList(db.WebBrowsers, "Id", "Name");
             return View();
         }
 
@@ -51,7 +52,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,FullName,BankId,BankGroupId,TimeOut,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Bank bank)
+        public ActionResult Create([Bind(Include = "Id,Name,FullName,BankId,BankGroupId,TimeOut,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID,UserAgent,WebBrowserId")] Bank bank)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +65,7 @@ namespace Razzil.Web.Controllers
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
             ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
+            ViewBag.WebBrowserId = new SelectList(db.WebBrowsers, "Id", "Name", bank.WebBrowserId);
             return View(bank);
         }
 
@@ -83,6 +85,7 @@ namespace Razzil.Web.Controllers
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
             ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
+            ViewBag.WebBrowserId = new SelectList(db.WebBrowsers, "Id", "Name", bank.WebBrowserId);
             return View(bank);
         }
 
@@ -91,7 +94,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,FullName,BankId,BankGroupId,TimeOut,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Bank bank)
+        public ActionResult Edit([Bind(Include = "Id,Name,FullName,BankId,BankGroupId,TimeOut,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID,UserAgent,WebBrowserId")] Bank bank)
         {
             if (ModelState.IsValid)
             {
@@ -103,6 +106,7 @@ namespace Razzil.Web.Controllers
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bank.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bank.LastUpdatedByUserID);
             ViewBag.BankGroupId = new SelectList(db.BankGroups, "Id", "Name", bank.BankGroupId);
+            ViewBag.WebBrowserId = new SelectList(db.WebBrowsers, "Id", "Name", bank.WebBrowserId);
             return View(bank);
         }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Razzil.DataAccess.Repository.Bank>
+﻿@model IEnumerable<Razzil.DataAccess.Repository.WebBrowser>
 
 @{
     ViewBag.Title = "Index";
@@ -15,13 +15,10 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.DisplayNameFor(model => model.Version)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BankId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeOut)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Active)
@@ -33,25 +30,10 @@
             @Html.DisplayNameFor(model => model.LastUpdatedTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bank2.Name)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.User.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User1.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BankGroup.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WebBrowser.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WebBrowser1.Name)
         </th>
         <th></th>
     </tr>
@@ -62,13 +44,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FullName)
+            @Html.DisplayFor(modelItem => item.Version)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BankId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeOut)
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Active)
@@ -80,25 +59,10 @@
             @Html.DisplayFor(modelItem => item.LastUpdatedTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bank2.Name)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.User.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User1.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BankGroup.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebBrowser.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebBrowser1.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
