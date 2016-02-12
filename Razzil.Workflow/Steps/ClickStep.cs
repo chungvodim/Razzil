@@ -21,7 +21,8 @@ namespace Razzil.Workflow
         {
             var ButtonElement = this.Context.WaitDriver.Until(ExpectedConditions.ElementToBeClickable(By.XPath(this.XPath)));
             ButtonElement.Click();
-            if (this.Context.LastPage.Contains(this.Sign))
+            var signElement = this.Context.WaitDriver.Until(ExpectedConditions.ElementIsVisible(By.XPath(this.Sign)));
+            if (signElement != null)
             {
                 return await base.Execute();
             }
