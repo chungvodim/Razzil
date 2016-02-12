@@ -61,6 +61,14 @@
       <Project>{ec031a5d-5c78-4c98-80e8-b35c1f855317}</Project>
       <Name>Razzil.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Razzil.Database\Razzil.Database.sqlproj">
+      <Project>{36b24f3f-9c12-4ae7-ad52-25ea93fe2f1c}</Project>
+      <Name>Razzil.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Razzil.Models\Razzil.Models.csproj">
+      <Project>{1088bab7-500e-4b92-8f9e-6fd14e64e497}</Project>
+      <Name>Razzil.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Razzil.Workflow\Razzil.Workflow.csproj">
       <Project>{a27ecd52-27e0-4a1d-8bff-4e2473716891}</Project>
       <Name>Razzil.Workflow</Name>

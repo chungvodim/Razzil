@@ -20,9 +20,10 @@ namespace Razzil.Workflow
         public TransactionInprogressHandler OnInprogress { get; set; }
         private Step Step { get; set; }
 
-        public Workflow(Step step)
+        public Workflow(StepContext stepContext)
         {
-            this.Step = step;
+            Step firstStep = new EnterPageStep(1, stepContext);
+            this.Step = firstStep;
         }
 
         public async void Execute()
@@ -33,14 +34,14 @@ namespace Razzil.Workflow
                 var result = await this.Step.Execute();
                 switch (result)
                 {
-                    case TransactionResult.Failed: OnFail(this.Step); break;
-                    case TransactionResult.Inprogress: OnInprogress(this.Step); break;
-                    case TransactionResult.Successful: OnSuccess(this.Step); break;
+                    case TransactionResult.Failed: OnFail(this.Step); this.Step.Dispose(); break;
+                    case TransactionResult.Inprogress: OnInprogress(this.Step); this.Step.Dispose(); break;
+                    case TransactionResult.Successful: OnSuccess(this.Step); this.Step.Dispose(); break;
                 }
             }
             catch (Exception ex)
             {
-                if (ex.InnerException.GetType() == typeof(WebDriverTimeoutException))
+                if (ex.InnerException != null && ex.InnerException.GetType() == typeof(WebDriverTimeoutException))
                 {
                     this.Step.Context.StatusCode = StatusCode.TIMEOUT_ERROR;
                 }
@@ -48,6 +49,7 @@ namespace Razzil.Workflow
                 {
                     this.Step.Context.StatusCode = StatusCode.UNKNOWN;
                 }
+                this.Step.Dispose();
                 OnFail(this.Step);
             }
         }

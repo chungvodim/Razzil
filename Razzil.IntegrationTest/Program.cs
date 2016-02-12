@@ -13,8 +13,9 @@ namespace Razzil.IntegrationTest
         static void Main(string[] args)
         {
             StepContext stepContext = new StepContext("VOZ");
-            Step firstStep = new EnterPageStep(1, stepContext);
-            workflow = new Workflow.Workflow(firstStep);
+            stepContext.TransactionModel.UserName = "chungvodim1";
+            stepContext.TransactionModel.Password = "Asdfgh123$%";
+            workflow = new Workflow.Workflow(stepContext);
             workflow.OnStart += OnTransactionStart;
             workflow.OnSuccess += OnTransactionSuccess;
             workflow.OnFail += OnTransactionFail;

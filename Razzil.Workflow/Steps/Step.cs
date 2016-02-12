@@ -97,21 +97,24 @@ namespace Razzil.Workflow
         {
             using (var db = new Entities())
             {
-                var step = db.Steps.Where(x => x.Bank.Name == this.Context.BankName && x.CurrentStepId == this.CurrentStepId).FirstOrDefault();
-                this.CurrentStepId = currentStepId;
-                this.Context = context;
-                this.Name = step.Name;
-                this.Url = step.Url;
-                this.PreviousStepId = step.PreviousStepId;
-                this.Sign = step.Sign;
-                this.Pattern = step.Pattern;
-                this.XPath = step.XPath;
-                this.XPathAttribute = step.XPathAttribute;
-                this.NextStepId = step.NextStepId0;// default next step
-                this.SecondNextStepId = step.NextStepId1;// default next step
-                this.InputType = step.InputType.Name;
-                this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
-                this.Params = step.Params.InitHttpRequestParams(';');
+                var step = db.Steps.Where(x => x.Bank.Name == context.BankName && x.CurrentStepId == currentStepId).FirstOrDefault();
+                if (step != null)
+                {
+                    this.Context = context;
+                    this.CurrentStepId = currentStepId;
+                    this.Name = step.Name;
+                    this.Url = step.Url;
+                    this.PreviousStepId = step.PreviousStepId;
+                    this.Sign = step.Sign;
+                    this.Pattern = step.Pattern;
+                    this.XPath = step.XPath;
+                    this.XPathAttribute = step.XPathAttribute;
+                    this.NextStepId = step.NextStepId0;// default next step
+                    this.SecondNextStepId = step.NextStepId1;// default next step
+                    this.InputType = step.InputType.Name;
+                    this.QueryStrings = step.QueyStrings.InitHttpRequestParams(';');
+                    this.Params = step.Params.InitHttpRequestParams(';');
+                }
             }
                 
         }
@@ -128,5 +131,9 @@ namespace Razzil.Workflow
             }
         }
 
+        public void Dispose()
+        {
+            this.Context.WebDriver.Quit();
+        }
     }
 }

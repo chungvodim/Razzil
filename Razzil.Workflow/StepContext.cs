@@ -31,6 +31,7 @@ namespace Razzil.Workflow
                     WaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value));
                     ShortWaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value / 2));
                     Client = new HttpClient() { Timeout = new TimeSpan(0, 0, bank.TimeOut.Value) };
+                    TransactionModel = new BankTransactionModel();
                 }
             }
         }
