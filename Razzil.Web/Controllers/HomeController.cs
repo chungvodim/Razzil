@@ -51,7 +51,7 @@ namespace Razzil.Web.Controllers
                     serializeModel.Id = user.Id;
                     serializeModel.RoleId = user.RoleId;
                     serializeModel.Name = user.Name;
-                    string userData = Serializer.JavaScriptSerialize(serializeModel);
+                    string userData = SerializerHelper.JavaScriptSerialize(serializeModel);
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now, DateTime.Now.AddMinutes(15), false, userData);
 
                     string encTicket = FormsAuthentication.Encrypt(authTicket);

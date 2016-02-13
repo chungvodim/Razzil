@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 
 namespace Razzil.Utils
 {
-    public static class Serializer
+    public static class SerializerHelper
     {
         public static string JavaScriptSerialize(object obj)
         {

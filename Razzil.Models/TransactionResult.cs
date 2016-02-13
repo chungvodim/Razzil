@@ -8,8 +8,9 @@ namespace Razzil.Models
 {
     public enum TransactionResult
     {
-        Failed = 0,
+        Started = 0,
         Successful = 1,
         Inprogress = 2,
+        Failed = 3,
     }
 }

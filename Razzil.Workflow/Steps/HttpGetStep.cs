@@ -17,7 +17,7 @@ namespace Razzil.Workflow
         }
         public override async Task<TransactionResult> Execute()
         {
-            using (var response = this.Context.Client.GetAsync(this.Url).Result)
+            using (var response = this.Context.httpClient.GetAsync(this.Url).Result)
             {
                 this.Context.LastPage = await response.Content.ReadAsStringAsync();
                 if (this.Context.LastPage.Contains(this.Sign))

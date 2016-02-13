@@ -17,14 +17,14 @@ namespace Razzil.Workflow
 {
     public class StepContext : DomainObject
     {
-        public StepContext(string bankName)
+        public StepContext(int bankId)
         {
             using (var db = new Entities())
             {
                 // To Do: Init TransactionModel
                 //this.TransactionModel = 
-                this.BankName = bankName;
-                var bank = db.Banks.Where(x => x.Name == bankName).FirstOrDefault();
+                this.BankId = bankId;
+                var bank = db.Banks.Where(x => x.Id == bankId).FirstOrDefault();
                 if(bank != null)
                 {
                     Logger = LogManager.GetCurrentClassLogger();
@@ -53,22 +53,31 @@ namespace Razzil.Workflow
                     WaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value));
                     ShortWaitDriver = new WebDriverWait(WebDriver, new TimeSpan(0, 0, bank.TimeOut.Value / 2));
 
-                    Client = new HttpClient() { Timeout = new TimeSpan(0, 0, bank.TimeOut.Value) };
-                    TransactionModel = new BankTransactionModel();
+                    httpClient = new HttpClient() { Timeout = new TimeSpan(0, 0, bank.TimeOut.Value) };
+                    TransactionModel = new BankTransaction();
                 }
             }
         }
-
+        public void InitTransactionModel(string fromAccountNumber, int fromBankId, string toAccountNumber, int toBankId,
+            decimal amount, string content)
+        {
+            this.TransactionModel.FromAccountName = fromAccountNumber;
+            this.TransactionModel.FromBankId = fromBankId;
+            this.TransactionModel.ToAccountNumber = toAccountNumber;
+            this.TransactionModel.ToBankId = toBankId;
+            this.TransactionModel.Amount = amount;
+            this.TransactionModel.Content = content;
+        }
         public Logger Logger { get; private set; }
         public IWebDriver WebDriver { get; private set; }
         public WebDriverWait WaitDriver { get; private set; }
         public WebDriverWait ShortWaitDriver { get; private set; }
-        public HttpClient Client { get; private set; }
-        public string BankName { get; set; }
+        public HttpClient httpClient { get; private set; }
+        public int BankId { get; set; }
         public string LastPage { get; set; }
         public StatusCode StatusCode { get; set; }
         public bool IsSuccessful { get; set; }
-        public BankTransactionModel TransactionModel { get; set; }
+        public BankTransaction TransactionModel { get; set; }
         public Encoding Encoding { get; set; }
         public Dictionary<string, string> Params { get; set; }
     }

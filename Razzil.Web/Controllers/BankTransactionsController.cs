@@ -39,11 +39,11 @@ namespace Razzil.Web.Controllers
         // GET: BankTransactions/Create
         public ActionResult Create()
         {
-            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "BankId");
-            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "BankId");
+            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name");
+            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name");
             ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name");
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description");
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -54,7 +54,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,Otp,OtpRef,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID")] BankTransaction bankTransaction)
+        public ActionResult Create([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID,OTP,OTPRef")] BankTransaction bankTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -63,13 +63,13 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.FromBankId);
-            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.ToBankId);
+            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
+            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
             ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
         }
 
@@ -85,13 +85,13 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.FromBankId);
-            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.ToBankId);
+            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
+            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
             ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
         }
 
@@ -100,7 +100,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,Otp,OtpRef,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID")] BankTransaction bankTransaction)
+        public ActionResult Edit([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID,OTP,OTPRef")] BankTransaction bankTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -108,13 +108,13 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.FromBankId);
-            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "BankId", bankTransaction.ToBankId);
+            ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
+            ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
             ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Description", bankTransaction.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Password", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
+            ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
         }
 

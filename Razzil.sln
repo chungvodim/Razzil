@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Workflow", "Razzil.Workflow\Razzil.Workflow.csproj", "{A27ECD52-27E0-4A1D-8BFF-4E2473716891}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.Utils", "Razzil.Utils\Razzil.Utils.csproj", "{F886540F-A012-4BF1-BCAE-80F1697F183A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.StepsGenerator", "Razzil.StepsGenerator\Razzil.StepsGenerator.csproj", "{BEACDE6C-4B1B-4533-A93A-E163F9FF9576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.WCF.Service", "Razzil.WCF.Service\Razzil.WCF.Service.csproj", "{7B440D9B-3F6B-4336-8B51-BEB5406BA536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{BEACDE6C-4B1B-4533-A93A-E163F9FF9576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEACDE6C-4B1B-4533-A93A-E163F9FF9576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEACDE6C-4B1B-4533-A93A-E163F9FF9576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,7 +29,7 @@ namespace Razzil.Web
                 try
                 {
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-                    CustomPrincipalSerializeModel serializeModel = Serializer.JavaScriptDeserialize<CustomPrincipalSerializeModel>(authTicket.UserData);
+                    CustomPrincipalSerializeModel serializeModel = SerializerHelper.JavaScriptDeserialize<CustomPrincipalSerializeModel>(authTicket.UserData);
                     CustomPrincipal newUser = new CustomPrincipal(authTicket.Name);
                     newUser.Id = serializeModel.Id;
                     newUser.IdRole = serializeModel.RoleId;

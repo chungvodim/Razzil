@@ -12,7 +12,7 @@ namespace Razzil.Workflow
     public delegate void TransactionSuccessHandler(Step step);
     public delegate void TransactionFailHandler(Step step);
     public delegate void TransactionInprogressHandler(Step step);
-    public class Workflow
+    public class Worker
     {
         public StartTransactionHandler OnStart { get; set; }
         public TransactionSuccessHandler OnSuccess { get; set; }
@@ -20,7 +20,7 @@ namespace Razzil.Workflow
         public TransactionInprogressHandler OnInprogress { get; set; }
         private Step Step { get; set; }
 
-        public Workflow(StepContext stepContext)
+        public Worker(StepContext stepContext)
         {
             Step firstStep = new EnterPageStep(1, stepContext);
             this.Step = firstStep;

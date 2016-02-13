@@ -23,7 +23,7 @@ namespace Razzil.Workflow
                     Params[key] = this.Context.Params[key];
                 }
             }
-            using (var response = this.Context.Client.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result)
+            using (var response = this.Context.httpClient.PostAsync(this.Url, new FormUrlEncodedContent(this.Params)).Result)
             {
                 this.Context.LastPage = await response.Content.ReadAsStringAsync();
                 if (this.Context.LastPage.Contains(this.Sign))

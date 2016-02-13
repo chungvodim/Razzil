@@ -23,8 +23,6 @@ namespace Razzil.DataAccess.Repository
         public Nullable<int> ToBankId { get; set; }
         public Nullable<decimal> Amount { get; set; }
         public Nullable<decimal> BankCharge { get; set; }
-        public string Otp { get; set; }
-        public string OtpRef { get; set; }
         public string LastPage { get; set; }
         public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
@@ -37,6 +35,8 @@ namespace Razzil.DataAccess.Repository
         public Nullable<decimal> Balance { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
+        public string OTP { get; set; }
+        public string OTPRef { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual Bank Bank1 { get; set; }

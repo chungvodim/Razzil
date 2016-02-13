@@ -9,13 +9,13 @@ namespace Razzil.IntegrationTest
 {
     class Program
     {
-        private static Workflow.Workflow workflow;
+        private static Workflow.Worker workflow;
         static void Main(string[] args)
         {
-            StepContext stepContext = new StepContext("VOZ");
+            StepContext stepContext = new StepContext(1);
             stepContext.TransactionModel.UserName = "chungvodim1";
             stepContext.TransactionModel.Password = "Asdfgh123$%";
-            workflow = new Workflow.Workflow(stepContext);
+            workflow = new Workflow.Worker(stepContext);
             workflow.OnStart += OnTransactionStart;
             workflow.OnSuccess += OnTransactionSuccess;
             workflow.OnFail += OnTransactionFail;

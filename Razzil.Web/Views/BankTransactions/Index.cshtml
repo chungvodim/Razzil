@@ -27,12 +27,6 @@
             @Html.DisplayNameFor(model => model.BankCharge)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Otp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtpRef)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.LastPage)
         </th>
         <th>
@@ -63,25 +57,31 @@
             @Html.DisplayNameFor(model => model.Balance)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Bank.BankId)
+            @Html.DisplayNameFor(model => model.OTP)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Bank1.BankId)
+            @Html.DisplayNameFor(model => model.OTPRef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank1.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionType.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserRole.Description)
+            @Html.DisplayNameFor(model => model.UserRole.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserRole1.Description)
+            @Html.DisplayNameFor(model => model.UserRole1.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Password)
+            @Html.DisplayNameFor(model => model.User.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User1.Password)
+            @Html.DisplayNameFor(model => model.User1.Name)
         </th>
         <th></th>
     </tr>
@@ -102,12 +102,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BankCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Otp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OtpRef)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastPage)
@@ -140,25 +134,31 @@
             @Html.DisplayFor(modelItem => item.Balance)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Bank.BankId)
+            @Html.DisplayFor(modelItem => item.OTP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Bank1.BankId)
+            @Html.DisplayFor(modelItem => item.OTPRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank1.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransactionType.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserRole.Description)
+            @Html.DisplayFor(modelItem => item.UserRole.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserRole1.Description)
+            @Html.DisplayFor(modelItem => item.UserRole1.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.Password)
+            @Html.DisplayFor(modelItem => item.User.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User1.Password)
+            @Html.DisplayFor(modelItem => item.User1.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

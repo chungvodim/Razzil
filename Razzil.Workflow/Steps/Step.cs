@@ -13,20 +13,20 @@ namespace Razzil.Workflow
     public abstract class Step : DomainObject
     {
         public StepContext Context { get; set; }
-        protected int? PreviousStepId { get; set; }
-        protected int CurrentStepId { get; set; }
-        protected int? NextStepId { get; set; }
-        protected int? SecondNextStepId { get; set; }
-        protected string InputType { get; set; }
-        protected string Url { get; set; }
-        protected string Key { get; set; }
-        protected string Pattern { get; set; }
-        protected string XPath { get; set; }
-        protected string XPathAttribute { get; set; }
-        protected string Sign { get; set; }
-        protected bool IsConditionType { get; set; }
-        protected Dictionary<string, string> QueryStrings { get; set; }
-        protected Dictionary<string, string> Params { get; set; }
+        public int? PreviousStepId { get; set; }
+        public int CurrentStepId { get; set; }
+        public int? NextStepId { get; set; }
+        public int? SecondNextStepId { get; set; }
+        public string InputType { get; set; }
+        public string Url { get; set; }
+        public string Key { get; set; }
+        public string Pattern { get; set; }
+        public string XPath { get; set; }
+        public string XPathAttribute { get; set; }
+        public string Sign { get; set; }
+        public bool IsConditionType { get; set; }
+        public Dictionary<string, string> QueryStrings { get; set; }
+        public Dictionary<string, string> Params { get; set; }
 
 
         //public delegate void StepStartHandler();
@@ -76,7 +76,7 @@ namespace Razzil.Workflow
             {
                 using (var db = new Entities())
                 {
-                    var step = db.Steps.Where(x => x.Bank.Name == this.Context.BankName && x.CurrentStepId == nextStepId).FirstOrDefault();
+                    var step = db.Steps.Where(x => x.Bank.Id == this.Context.BankId && x.CurrentStepId == nextStepId).FirstOrDefault();
                     if(step != null)
                     {
                         return step.StepTypeId;
@@ -93,11 +93,11 @@ namespace Razzil.Workflow
             }
         }
 
-        protected void Initialize(int currentStepId, StepContext context)
+        public void Initialize(int currentStepId, StepContext context)
         {
             using (var db = new Entities())
             {
-                var step = db.Steps.Where(x => x.Bank.Name == context.BankName && x.CurrentStepId == currentStepId).FirstOrDefault();
+                var step = db.Steps.Where(x => x.Bank.Id == context.BankId && x.CurrentStepId == currentStepId).FirstOrDefault();
                 if (step != null)
                 {
                     this.Context = context;

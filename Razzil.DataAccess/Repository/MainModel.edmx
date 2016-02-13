@@ -84,8 +84,8 @@
           <Property Name="FromBankId" Type="int" />
           <Property Name="ToBankId" Type="int" />
           <Property Name="Captcha" Type="varchar" MaxLength="20" />
-          <Property Name="Otp" Type="varchar" MaxLength="20" />
-          <Property Name="OtpRef" Type="varchar" MaxLength="20" />
+          <Property Name="OTP" Type="varchar" MaxLength="20" />
+          <Property Name="OTPRef" Type="varchar" MaxLength="20" />
           <Property Name="BankCharge" Type="decimal" Precision="8" Scale="0" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LastPage" Type="nvarchar(max)" />
@@ -851,8 +851,6 @@
           <Property Name="ToBankId" Type="Int32" />
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="BankCharge" Type="Decimal" Precision="8" Scale="0" />
-          <Property Name="Otp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="OtpRef" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastPage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedTime" Type="DateTime" Precision="3" />
           <Property Name="LastUpdatedTime" Type="DateTime" Precision="3" />
@@ -872,6 +870,8 @@
           <NavigationProperty Name="UserRole1" Relationship="RazzilModel.FK_BankTransaction_User_1" FromRole="BankTransaction" ToRole="UserRole" />
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_BankTransaction_User1" FromRole="BankTransaction" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_BankTransaction_User_11" FromRole="BankTransaction" ToRole="User" />
+          <Property Name="OTP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OTPRef" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Step">
           <Key>
@@ -1991,6 +1991,8 @@
           <EntitySetMapping Name="BankTransactions">
             <EntityTypeMapping TypeName="RazzilModel.BankTransaction">
               <MappingFragment StoreEntitySet="BankTransaction">
+                <ScalarProperty Name="OTPRef" ColumnName="OTPRef" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
@@ -2009,8 +2011,6 @@
                 <ScalarProperty Name="ToBankId" ColumnName="ToBankId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="BankCharge" ColumnName="BankCharge" />
-                <ScalarProperty Name="Otp" ColumnName="Otp" />
-                <ScalarProperty Name="OtpRef" ColumnName="OtpRef" />
                 <ScalarProperty Name="LastPage" ColumnName="LastPage" />
                 <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
                 <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
