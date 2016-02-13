@@ -36,6 +36,15 @@
             @Html.DisplayNameFor(model => model.UserAgent)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DailyLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerTransactionMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerTransactionMin)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Bank2.Name)
         </th>
         <th>
@@ -81,6 +90,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserAgent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DailyLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PerTransactionMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PerTransactionMin)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Bank2.Name)

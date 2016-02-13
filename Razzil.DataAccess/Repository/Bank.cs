@@ -37,6 +37,9 @@ namespace Razzil.DataAccess.Repository
         public int LastUpdatedByUserID { get; set; }
         public string UserAgent { get; set; }
         public Nullable<int> WebBrowserId { get; set; }
+        public Nullable<decimal> DailyLimit { get; set; }
+        public Nullable<decimal> PerTransactionMax { get; set; }
+        public Nullable<decimal> PerTransactionMin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }

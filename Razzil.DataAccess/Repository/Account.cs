@@ -27,6 +27,9 @@ namespace Razzil.DataAccess.Repository
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
+        public Nullable<decimal> DailyLimit { get; set; }
+        public Nullable<decimal> PerTransactionMax { get; set; }
+        public Nullable<decimal> PerTransactionMin { get; set; }
     
         public virtual AccountGroup AccountGroup { get; set; }
         public virtual Bank Bank { get; set; }

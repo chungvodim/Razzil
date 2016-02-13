@@ -52,11 +52,11 @@ namespace Razzil.WCF.Service
             //}
         }
 
-        public string GetBalance(string id, string accountNumber, string bankId, string callBackUrl)
+        public string GetBalance(string tnxId, string accountNumber, string bankId, string callBackUrl)
         {
             try
             {
-                return string.Join("-", id, accountNumber, bankId);
+                return string.Join("-", tnxId, accountNumber, bankId);
             }
             catch (Exception ex)
             {

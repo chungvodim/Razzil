@@ -17,6 +17,9 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DailyLimit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMax" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMin" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
@@ -48,6 +51,9 @@
           <Property Name="TimeOut" Type="int" />
           <Property Name="BankGroupId" Type="int" />
           <Property Name="UserAgent" Type="varchar" MaxLength="100" />
+          <Property Name="DailyLimit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMax" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMin" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="LastUpdatedTime" Type="datetime" />
@@ -773,6 +779,9 @@
           <NavigationProperty Name="UserRole1" Relationship="RazzilModel.FK_Account_User_1" FromRole="Account" ToRole="UserRole" />
           <NavigationProperty Name="User" Relationship="RazzilModel.FK_Account_User1" FromRole="Account" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="RazzilModel.FK_Account_User_11" FromRole="Account" ToRole="User" />
+          <Property Name="DailyLimit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMax" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMin" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="AccountGroup">
           <Key>
@@ -820,6 +829,9 @@
           <Property Name="WebBrowserId" Type="Int32" />
           <NavigationProperty Name="WebBrowser" Relationship="RazzilModel.FK_Bank_WebBrowser" FromRole="Bank" ToRole="WebBrowser" />
           <NavigationProperty Name="WebBrowser1" Relationship="RazzilModel.FK_Bank_WebBrowser1" FromRole="Bank" ToRole="WebBrowser" />
+          <Property Name="DailyLimit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMax" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PerTransactionMin" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="BankGroup">
           <Key>
@@ -1926,6 +1938,9 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="RazzilModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="PerTransactionMin" ColumnName="PerTransactionMin" />
+                <ScalarProperty Name="PerTransactionMax" ColumnName="PerTransactionMax" />
+                <ScalarProperty Name="DailyLimit" ColumnName="DailyLimit" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
                 <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
@@ -1959,6 +1974,9 @@
           <EntitySetMapping Name="Banks">
             <EntityTypeMapping TypeName="RazzilModel.Bank">
               <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="PerTransactionMin" ColumnName="PerTransactionMin" />
+                <ScalarProperty Name="PerTransactionMax" ColumnName="PerTransactionMax" />
+                <ScalarProperty Name="DailyLimit" ColumnName="DailyLimit" />
                 <ScalarProperty Name="WebBrowserId" ColumnName="WebBrowserId" />
                 <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
