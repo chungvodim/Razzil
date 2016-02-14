@@ -65,6 +65,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="HostIISTcp\Web.config" />
+    <None Include="HostIIS\Info.svclog" />
     <None Include="HostIIS\Web.config" />
     <None Include="packages.config" />
   </ItemGroup>

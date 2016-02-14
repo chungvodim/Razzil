@@ -21,14 +21,14 @@ namespace Razzil.WCF.Service
         [FaultContract(typeof(ProductFault))]
         //[WebGet(UriTemplate = "/Transfer?id={id}&accountname={accountname}")]
         [WebInvoke(UriTemplate = "/Transfer?tnxId={tnxId}&fromAccountNumber={fromAccountNumber}&fromBankId={fromBankId}&toAccountNumber={toAccountNumber}&toBankId={toBankId}&amount={amount}&content={content}&callBackUrl={callBackUrl}",
-            Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+            Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string Transfer(string tnxId, string fromAccountNumber, int fromBankId, string toAccountNumber, int toBankId,
             decimal amount, string content, string callBackUrl);
 
         [OperationContract]
         [FaultContract(typeof(ProductFault))]
         [WebInvoke(UriTemplate = "/GetBalance?tnxId={tnxId}&accountNumber={accountNumber}&bankId={bankId}&callBackUrl={callBackUrl}",
-            Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+            Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string GetBalance(string tnxId, string accountNumber, string bankId, string callBackUrl);
 
         //[OperationContract(AsyncPattern = true)]
