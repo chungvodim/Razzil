@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: AccountGroups
         public ActionResult Index()
         {
-            var accountGroups = db.AccountGroups.Include(a => a.UserRole).Include(a => a.UserRole1).Include(a => a.User).Include(a => a.User1);
+            var accountGroups = db.AccountGroups.Include(a => a.User).Include(a => a.User1);
             return View(accountGroups.ToList());
         }
 
@@ -39,8 +39,6 @@ namespace Razzil.Web.Controllers
         // GET: AccountGroups/Create
         public ActionResult Create()
         {
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -60,8 +58,6 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.LastUpdatedByUserID);
             return View(accountGroup);
@@ -79,8 +75,6 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.LastUpdatedByUserID);
             return View(accountGroup);
@@ -99,8 +93,6 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", accountGroup.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", accountGroup.LastUpdatedByUserID);
             return View(accountGroup);

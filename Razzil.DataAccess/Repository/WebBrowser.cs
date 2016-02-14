@@ -18,7 +18,6 @@ namespace Razzil.DataAccess.Repository
         public WebBrowser()
         {
             this.Banks = new HashSet<Bank>();
-            this.Banks1 = new HashSet<Bank>();
         }
     
         public int Id { get; set; }
@@ -35,7 +34,5 @@ namespace Razzil.DataAccess.Repository
         public virtual ICollection<Bank> Banks { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bank> Banks1 { get; set; }
     }
 }

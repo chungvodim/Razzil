@@ -18,7 +18,6 @@ namespace Razzil.DataAccess.Repository
         public Bank()
         {
             this.Accounts = new HashSet<Account>();
-            this.Bank1 = new HashSet<Bank>();
             this.BankTransactions = new HashSet<BankTransaction>();
             this.BankTransactions1 = new HashSet<BankTransaction>();
             this.Steps = new HashSet<Step>();
@@ -26,36 +25,32 @@ namespace Razzil.DataAccess.Repository
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string FullName { get; set; }
         public string BankId { get; set; }
-        public Nullable<int> BankGroupId { get; set; }
+        public Nullable<int> WebBrowserId { get; set; }
+        public string FullName { get; set; }
         public Nullable<int> TimeOut { get; set; }
+        public Nullable<int> BankGroupId { get; set; }
+        public string UserAgent { get; set; }
+        public Nullable<decimal> DailyLimit { get; set; }
+        public Nullable<decimal> PerTransactionMax { get; set; }
+        public Nullable<decimal> PerTransactionMin { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<System.DateTime> LastUpdatedTime { get; set; }
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
-        public string UserAgent { get; set; }
-        public Nullable<int> WebBrowserId { get; set; }
-        public Nullable<decimal> DailyLimit { get; set; }
-        public Nullable<decimal> PerTransactionMax { get; set; }
-        public Nullable<decimal> PerTransactionMin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bank> Bank1 { get; set; }
-        public virtual Bank Bank2 { get; set; }
+        public virtual BankGroup BankGroup { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
+        public virtual WebBrowser WebBrowser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankTransaction> BankTransactions1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Step> Steps { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
-        public virtual BankGroup BankGroup { get; set; }
-        public virtual WebBrowser WebBrowser { get; set; }
-        public virtual WebBrowser WebBrowser1 { get; set; }
     }
 }

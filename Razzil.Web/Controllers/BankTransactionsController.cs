@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: BankTransactions
         public ActionResult Index()
         {
-            var bankTransactions = db.BankTransactions.Include(b => b.Bank).Include(b => b.Bank1).Include(b => b.TransactionType).Include(b => b.UserRole).Include(b => b.UserRole1).Include(b => b.User).Include(b => b.User1);
+            var bankTransactions = db.BankTransactions.Include(b => b.Bank).Include(b => b.Bank1).Include(b => b.TransactionType).Include(b => b.User).Include(b => b.User1);
             return View(bankTransactions.ToList());
         }
 
@@ -41,9 +41,7 @@ namespace Razzil.Web.Controllers
         {
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name");
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name");
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name");
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -54,7 +52,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID,OTP,OTPRef")] BankTransaction bankTransaction)
+        public ActionResult Create([Bind(Include = "Id,TypeId,TransactionId,UserName,Password,FromAccountName,ToAccountName,FromAccountNumber,ToAccountNumber,Content,Amount,FromBankId,ToBankId,Captcha,OTP,OTPRef,BankCharge,Balance,LastPage,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankTransaction bankTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -65,9 +63,7 @@ namespace Razzil.Web.Controllers
 
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
@@ -87,9 +83,7 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
@@ -100,7 +94,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TransactionId,TypeId,FromAccountNumber,FromBankId,ToAccountNumber,ToBankId,Amount,BankCharge,LastPage,CreatedTime,LastUpdatedTime,UserName,Password,FromAccountName,ToAccountName,Content,Captcha,Balance,CreatedByUserID,LastUpdatedByUserID,OTP,OTPRef")] BankTransaction bankTransaction)
+        public ActionResult Edit([Bind(Include = "Id,TypeId,TransactionId,UserName,Password,FromAccountName,ToAccountName,FromAccountNumber,ToAccountNumber,Content,Amount,FromBankId,ToBankId,Captcha,OTP,OTPRef,BankCharge,Balance,LastPage,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] BankTransaction bankTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -110,9 +104,7 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", bankTransaction.LastUpdatedByUserID);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);

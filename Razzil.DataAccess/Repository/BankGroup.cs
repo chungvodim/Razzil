@@ -28,11 +28,9 @@ namespace Razzil.DataAccess.Repository
         public int CreatedByUserID { get; set; }
         public int LastUpdatedByUserID { get; set; }
     
-        public virtual UserRole UserRole { get; set; }
-        public virtual UserRole UserRole1 { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bank> Banks { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

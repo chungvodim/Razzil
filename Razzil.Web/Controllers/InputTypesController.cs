@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: InputTypes
         public ActionResult Index()
         {
-            var inputTypes = db.InputTypes.Include(i => i.UserRole).Include(i => i.UserRole1).Include(i => i.User).Include(i => i.User1);
+            var inputTypes = db.InputTypes.Include(i => i.User).Include(i => i.User1);
             return View(inputTypes.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace Razzil.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Razzil.DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
+            DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
             if (inputType == null)
             {
                 return HttpNotFound();
@@ -39,8 +39,6 @@ namespace Razzil.Web.Controllers
         // GET: InputTypes/Create
         public ActionResult Create()
         {
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -51,7 +49,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Razzil.DataAccess.Repository.InputType inputType)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] DataAccess.Repository.InputType inputType)
         {
             if (ModelState.IsValid)
             {
@@ -60,8 +58,6 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.LastUpdatedByUserID);
             return View(inputType);
@@ -74,13 +70,11 @@ namespace Razzil.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Razzil.DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
+            DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
             if (inputType == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.LastUpdatedByUserID);
             return View(inputType);
@@ -91,7 +85,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Razzil.DataAccess.Repository.InputType inputType)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] DataAccess.Repository.InputType inputType)
         {
             if (ModelState.IsValid)
             {
@@ -99,8 +93,6 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", inputType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", inputType.LastUpdatedByUserID);
             return View(inputType);
@@ -113,7 +105,7 @@ namespace Razzil.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Razzil.DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
+            DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
             if (inputType == null)
             {
                 return HttpNotFound();
@@ -126,7 +118,7 @@ namespace Razzil.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Razzil.DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
+            DataAccess.Repository.InputType inputType = db.InputTypes.Find(id);
             db.InputTypes.Remove(inputType);
             db.SaveChanges();
             return RedirectToAction("Index");

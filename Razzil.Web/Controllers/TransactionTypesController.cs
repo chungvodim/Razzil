@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: TransactionTypes
         public ActionResult Index()
         {
-            var transactionTypes = db.TransactionTypes.Include(t => t.UserRole).Include(t => t.UserRole1).Include(t => t.User).Include(t => t.User1);
+            var transactionTypes = db.TransactionTypes.Include(t => t.User).Include(t => t.User1);
             return View(transactionTypes.ToList());
         }
 
@@ -39,8 +39,6 @@ namespace Razzil.Web.Controllers
         // GET: TransactionTypes/Create
         public ActionResult Create()
         {
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -51,7 +49,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] TransactionType transactionType)
+        public ActionResult Create([Bind(Include = "Id,NAME,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] TransactionType transactionType)
         {
             if (ModelState.IsValid)
             {
@@ -60,8 +58,6 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.CreatedByUserID);
             return View(transactionType);
@@ -79,8 +75,6 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.CreatedByUserID);
             return View(transactionType);
@@ -91,7 +85,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] TransactionType transactionType)
+        public ActionResult Edit([Bind(Include = "Id,NAME,Description,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] TransactionType transactionType)
         {
             if (ModelState.IsValid)
             {
@@ -99,8 +93,6 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.LastUpdatedByUserID);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", transactionType.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", transactionType.CreatedByUserID);
             return View(transactionType);

@@ -30,10 +30,10 @@ namespace Razzil.DataAccess.Repository
         public virtual DbSet<Bank> Banks { get; set; }
         public virtual DbSet<BankGroup> BankGroups { get; set; }
         public virtual DbSet<BankTransaction> BankTransactions { get; set; }
+        public virtual DbSet<InputType> InputTypes { get; set; }
         public virtual DbSet<Step> Steps { get; set; }
         public virtual DbSet<StepType> StepTypes { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
-        public virtual DbSet<InputType> InputTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<WebBrowser> WebBrowsers { get; set; }

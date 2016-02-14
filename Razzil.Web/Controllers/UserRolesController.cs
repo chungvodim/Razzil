@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: UserRoles
         public ActionResult Index()
         {
-            var userRoles = db.UserRoles.Include(u => u.UserRole2).Include(u => u.UserRole3).Include(u => u.User).Include(u => u.User1);
+            var userRoles = db.UserRoles.Include(u => u.User).Include(u => u.User1);
             return View(userRoles.ToList());
         }
 
@@ -39,8 +39,6 @@ namespace Razzil.Web.Controllers
         // GET: UserRoles/Create
         public ActionResult Create()
         {
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -60,8 +58,6 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.LastUpdatedByUserID);
             return View(userRole);
@@ -79,8 +75,6 @@ namespace Razzil.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.LastUpdatedByUserID);
             return View(userRole);
@@ -99,8 +93,6 @@ namespace Razzil.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", userRole.LastUpdatedByUserID);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", userRole.LastUpdatedByUserID);
             return View(userRole);

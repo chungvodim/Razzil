@@ -17,7 +17,7 @@ namespace Razzil.Web.Controllers
         // GET: Steps
         public ActionResult Index()
         {
-            var steps = db.Steps.Include(s => s.Bank).Include(s => s.StepType).Include(s => s.InputType).Include(s => s.UserRole).Include(s => s.UserRole1).Include(s => s.User).Include(s => s.User1);
+            var steps = db.Steps.Include(s => s.Bank).Include(s => s.InputType).Include(s => s.StepType).Include(s => s.User).Include(s => s.User1);
             return View(steps.ToList());
         }
 
@@ -40,10 +40,8 @@ namespace Razzil.Web.Controllers
         public ActionResult Create()
         {
             ViewBag.BankId = new SelectList(db.Banks, "Id", "Name");
-            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name");
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name");
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name");
+            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -54,7 +52,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
+        public ActionResult Create([Bind(Include = "Id,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,InputTypeId,StepTypeId,BankId,Name,Url,Params,QueyStrings,Encoding,Sign,Pattern,XPath,XPathAttribute,IsConditionType,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
         {
             if (ModelState.IsValid)
             {
@@ -64,10 +62,8 @@ namespace Razzil.Web.Controllers
             }
 
             ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
-            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.LastUpdatedByUserID);
+            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", step.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", step.LastUpdatedByUserID);
             return View(step);
@@ -86,10 +82,8 @@ namespace Razzil.Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
-            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.LastUpdatedByUserID);
+            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", step.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", step.LastUpdatedByUserID);
             return View(step);
@@ -100,7 +94,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,StepTypeId,BankId,Url,Params,Encoding,Sign,Pattern,XPath,QueyStrings,XPathAttribute,IsConditionType,InputTypeId,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
+        public ActionResult Edit([Bind(Include = "Id,PreviousStepId,CurrentStepId,NextStepId1,NextStepId0,InputTypeId,StepTypeId,BankId,Name,Url,Params,QueyStrings,Encoding,Sign,Pattern,XPath,XPathAttribute,IsConditionType,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Step step)
         {
             if (ModelState.IsValid)
             {
@@ -109,10 +103,8 @@ namespace Razzil.Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BankId = new SelectList(db.Banks, "Id", "Name", step.BankId);
-            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.InputTypeId = new SelectList(db.InputTypes, "Id", "Name", step.InputTypeId);
-            ViewBag.CreatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.CreatedByUserID);
-            ViewBag.LastUpdatedByUserID = new SelectList(db.UserRoles, "Id", "Name", step.LastUpdatedByUserID);
+            ViewBag.StepTypeId = new SelectList(db.StepTypes, "Id", "Name", step.StepTypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", step.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", step.LastUpdatedByUserID);
             return View(step);

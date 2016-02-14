@@ -28,7 +28,7 @@ namespace Razzil.Workflow
                 if(bank != null)
                 {
                     Logger = LogManager.GetCurrentClassLogger();
-                    switch (bank.WebBrowser1.Name.ToLower())
+                    switch (bank.WebBrowser.Name.ToLower())
                     {
                         case "chrome":
                             WebDriver = new ChromeDriver();

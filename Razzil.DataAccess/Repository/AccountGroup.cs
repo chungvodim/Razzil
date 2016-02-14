@@ -31,8 +31,6 @@ namespace Razzil.DataAccess.Repository
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
-        public virtual UserRole UserRole { get; set; }
-        public virtual UserRole UserRole1 { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }
