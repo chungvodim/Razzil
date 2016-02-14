@@ -41,7 +41,7 @@ namespace Razzil.Web.Controllers
         {
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name");
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name");
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME");
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name");
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name");
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name");
             return View();
@@ -63,7 +63,7 @@ namespace Razzil.Web.Controllers
 
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
@@ -83,7 +83,7 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
@@ -104,7 +104,7 @@ namespace Razzil.Web.Controllers
             }
             ViewBag.FromBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.FromBankId);
             ViewBag.ToBankId = new SelectList(db.Banks, "Id", "Name", bankTransaction.ToBankId);
-            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "NAME", bankTransaction.TypeId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Name", bankTransaction.TypeId);
             ViewBag.CreatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.CreatedByUserID);
             ViewBag.LastUpdatedByUserID = new SelectList(db.Users, "Id", "Name", bankTransaction.LastUpdatedByUserID);
             return View(bankTransaction);
