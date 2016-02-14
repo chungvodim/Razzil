@@ -1,11 +1,12 @@
 ﻿CREATE TABLE [dbo].[Account]
 (
 	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
-	[AccountName] VARCHAR(50) NULL, 
+	[UserName] NVARCHAR(50) NULL, 
+    [Password] NVARCHAR(50) NULL, 
+	[AccountName] NVARCHAR(50) NULL, 
     [AccountNumber] VARCHAR(50) NULL, 
     [BankId] int NOT NULL, 
     [AccountGroupId] int NULL, 
-    [Password] VARCHAR(50) NULL, 
     [Phone] VARCHAR(20) NULL, 
     [Balance] DECIMAL NULL,
 	[DailyLimit] DECIMAL NULL,

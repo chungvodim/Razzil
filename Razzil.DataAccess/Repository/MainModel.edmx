@@ -10,11 +10,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AccountName" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="50" />
           <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
           <Property Name="BankId" Type="int" Nullable="false" />
           <Property Name="AccountGroupId" Type="int" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="0" />
           <Property Name="DailyLimit" Type="decimal" Precision="18" Scale="0" />
@@ -761,11 +762,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BankId" Type="Int32" Nullable="false" />
           <Property Name="AccountGroupId" Type="Int32" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="DailyLimit" Type="Decimal" Precision="18" Scale="0" />
@@ -1578,6 +1580,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="RazzilModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BankId" ColumnName="BankId" />
                 <ScalarProperty Name="AccountGroupId" ColumnName="AccountGroupId" />

@@ -61,12 +61,23 @@ namespace Razzil.Workflow
         public void InitTransactionModel(string fromAccountNumber, int fromBankId, string toAccountNumber, int toBankId,
             decimal amount, string content)
         {
-            this.TransactionModel.FromAccountName = fromAccountNumber;
-            this.TransactionModel.FromBankId = fromBankId;
-            this.TransactionModel.ToAccountNumber = toAccountNumber;
-            this.TransactionModel.ToBankId = toBankId;
-            this.TransactionModel.Amount = amount;
-            this.TransactionModel.Content = content;
+            using (var db = new Entities())
+            {
+                var account = db.Accounts.Where(x => x.AccountNumber == fromAccountNumber && x.BankId == fromBankId).FirstOrDefault();
+                if(account != null)
+                {
+                    this.TransactionModel.UserName = account.UserName;
+                    this.TransactionModel.Password = account.Password;
+
+                    this.TransactionModel.FromAccountName = fromAccountNumber;
+                    this.TransactionModel.FromBankId = fromBankId;
+                    this.TransactionModel.ToAccountNumber = toAccountNumber;
+                    this.TransactionModel.ToBankId = toBankId;
+                    this.TransactionModel.Amount = amount;
+                    this.TransactionModel.Content = content;
+                }
+            }
+                
         }
         public Logger Logger { get; private set; }
         public IWebDriver WebDriver { get; private set; }

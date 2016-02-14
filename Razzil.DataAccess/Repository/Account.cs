@@ -15,11 +15,12 @@ namespace Razzil.DataAccess.Repository
     public partial class Account
     {
         public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
         public string AccountName { get; set; }
         public string AccountNumber { get; set; }
         public int BankId { get; set; }
         public Nullable<int> AccountGroupId { get; set; }
-        public string Password { get; set; }
         public string Phone { get; set; }
         public Nullable<decimal> Balance { get; set; }
         public Nullable<decimal> DailyLimit { get; set; }

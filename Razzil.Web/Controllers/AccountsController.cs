@@ -51,7 +51,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,DailyLimit,PerTransactionMax,PerTransactionMin,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
+        public ActionResult Create([Bind(Include = "Id,UserName,Password,AccountName,AccountNumber,BankId,AccountGroupId,Phone,Balance,DailyLimit,PerTransactionMax,PerTransactionMin,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Razzil.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BankId,AccountGroupId,AccountName,AccountNumber,Password,Phone,Balance,DailyLimit,PerTransactionMax,PerTransactionMin,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Password,AccountName,AccountNumber,BankId,AccountGroupId,Phone,Balance,DailyLimit,PerTransactionMax,PerTransactionMin,Active,CreatedTime,LastUpdatedTime,CreatedByUserID,LastUpdatedByUserID")] Account account)
         {
             if (ModelState.IsValid)
             {
