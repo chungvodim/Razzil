@@ -251,6 +251,8 @@
     <Content Include="Views\WebBrowsers\Index.cshtml" />
     <Content Include="Views\Captcha\Input.cshtml" />
     <Content Include="Views\OTP\Input.cshtml" />
+    <Content Include="Views\Shared\_CaptchaPartial.cshtml" />
+    <Content Include="Views\Shared\_OTPPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

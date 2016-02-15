@@ -1,0 +1,16 @@
+﻿@using Razzil.Utils
+@model IEnumerable<Razzil.DataAccess.Repository.Captcha>
+
+@foreach (var item in Model)
+{
+    using (Html.BeginForm("Input", "Captcha", FormMethod.Post, new { id = item.Id }))
+    {
+        <div class="form-horizontal">
+            <input type="hidden" name="Id" id="Id" value="@item.Id" />
+            @Html.DisplayForBinaryImage(item.Image, 100, 100, "no image")
+            <div>Created Time: @item.CreatedTime</div>
+            <input class="form-control" id="Result" name="Result" type="text">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    }
+}
