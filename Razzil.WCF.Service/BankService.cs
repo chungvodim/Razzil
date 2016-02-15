@@ -69,7 +69,7 @@ namespace Razzil.WCF.Service
             //}
         }
 
-        private HttpContent CreateHttpContent(Step step, TransactionResult transactionResult)
+        private HttpContent CreateHttpContent(Step step, TransactionResultEnum transactionResult)
         {
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("tnxId", this.tnxId));
@@ -81,22 +81,22 @@ namespace Razzil.WCF.Service
 
         private void OnTransactionInprogress(Step step)
         {
-            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResult.Inprogress));
+            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResultEnum.Inprogress));
         }
 
         private void OnTransactionFail(Step step)
         {
-            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResult.Failed));
+            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResultEnum.Failed));
         }
 
         private void OnTransactionStart(Step step)
         {
-            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResult.Started));
+            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResultEnum.Started));
         }
 
         private void OnTransactionSuccess(Step step)
         {
-            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResult.Inprogress));
+            CallBackHttpClient.PostAsync(this.CallBackURL, CreateHttpContent(step, TransactionResultEnum.Inprogress));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<TransactionResult> Execute()
+        public override async Task<TransactionResultEnum> Execute()
         {
             foreach (var key in this.Params.Keys)
             {
@@ -32,7 +32,7 @@ namespace Razzil.Workflow
                 }
                 else
                 {
-                    return TransactionResult.Failed;
+                    return TransactionResultEnum.Failed;
                 }
             }
         }

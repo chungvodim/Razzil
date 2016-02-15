@@ -1,0 +1,36 @@
+﻿@section scripts{
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script>
+        var uri = '/Captcha/GetUnPassedCapchas';
+        var milestone = 0;
+        toastr.options.fadeOut = 5000;
+        var container = $('.container.body-content');
+
+        function RefreshCaptchaTable() {
+            $.ajax({
+                url: uri,
+                dataType: "html",
+                type: "GET",
+                beforeSend: function (xhr) {
+                },
+                success: function (data) {
+                    var captchas = [];
+                    $.each($(data), function (key, item) {
+                        var id = $(item).attr('id');
+                        if ($('#' + id).length == 0) {
+                            captchas.push(item);
+                        }
+                    });
+                    container.append(captchas);
+                    setTimeout(RefreshCaptchaTable, 1000);
+                },
+                error: function (xhr, err) {
+                    console.log("Failed");
+                }
+            });
+        }
+        $(document).ready(function (xhr, err) {
+            RefreshCaptchaTable();
+        });
+    </script>
+}

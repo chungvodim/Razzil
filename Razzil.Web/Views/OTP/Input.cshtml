@@ -1,0 +1,43 @@
+﻿
+@section scripts{
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script>
+        var uri = '/OTP/GetUnPassedOTPs';
+        var milestone = 0;
+        toastr.options.fadeOut = 5000;
+        var container = $('.container.body-content');
+
+        function RefreshOTPTable() {
+            $.ajax({
+                url: uri,
+                dataType: "html",
+                type: "GET",
+                beforeSend: function (xhr) {
+                },
+                success: function (data) {
+                    //$.each($('form[action="/OTP/Input"]'), function (key, item) {
+                    //    var id = $(item).attr('id');
+                    //    if ($(data).find('form#'+id).length == 0) {
+                    //        $(this).remove();
+                    //    }
+                    //});
+                    var OTPs = [];
+                    $.each($(data), function (key, item) {
+                        var id = $(item).attr('id');
+                        if ($('#' + id).length == 0) {
+                            OTPs.push(item);
+                        }
+                    });
+                    container.append(OTPs);
+                    setTimeout(RefreshOTPTable, 1000);
+                },
+                error: function (xhr, err) {
+                    console.log("Failed");
+                }
+            });
+        }
+        $(document).ready(function (xhr, err) {
+            RefreshOTPTable();
+        });
+    </script>
+}

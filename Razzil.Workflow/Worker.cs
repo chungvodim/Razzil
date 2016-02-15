@@ -34,9 +34,9 @@ namespace Razzil.Workflow
                 var result = await this.Step.Execute();
                 switch (result)
                 {
-                    case TransactionResult.Failed: OnFail(this.Step); this.Step.Dispose(); break;
-                    case TransactionResult.Inprogress: OnInprogress(this.Step); this.Step.Dispose(); break;
-                    case TransactionResult.Successful: OnSuccess(this.Step); this.Step.Dispose(); break;
+                    case TransactionResultEnum.Failed: OnFail(this.Step); this.Step.Dispose(); break;
+                    case TransactionResultEnum.Inprogress: OnInprogress(this.Step); this.Step.Dispose(); break;
+                    case TransactionResultEnum.Successful: OnSuccess(this.Step); this.Step.Dispose(); break;
                 }
             }
             catch (Exception ex)

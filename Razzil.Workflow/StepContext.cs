@@ -8,7 +8,6 @@ using System.Net.Http;
 using Razzil.DataAccess.Repository;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using NLog;
 using OpenQA.Selenium.PhantomJS;
 using Razzil.Models;
 using OpenQA.Selenium;
@@ -27,7 +26,7 @@ namespace Razzil.Workflow
                 var bank = db.Banks.Where(x => x.Id == bankId).FirstOrDefault();
                 if(bank != null)
                 {
-                    Logger = LogManager.GetCurrentClassLogger();
+                    
                     switch (bank.WebBrowser.Name.ToLower())
                     {
                         case "chrome":
@@ -79,7 +78,6 @@ namespace Razzil.Workflow
             }
                 
         }
-        public Logger Logger { get; private set; }
         public IWebDriver WebDriver { get; private set; }
         public WebDriverWait WaitDriver { get; private set; }
         public WebDriverWait ShortWaitDriver { get; private set; }
