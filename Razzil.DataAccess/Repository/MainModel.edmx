@@ -101,6 +101,17 @@
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Captcha">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="Result" Type="nvarchar" MaxLength="20" />
+          <Property Name="Passed" Type="bit" />
+          <Property Name="CreatedTime" Type="datetime" />
+          <Property Name="CreatedByUserID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="InputType">
           <Key>
             <PropertyRef Name="Id" />
@@ -113,6 +124,20 @@
           <Property Name="LastUpdatedTime" Type="datetime" />
           <Property Name="CreatedByUserID" Type="int" Nullable="false" />
           <Property Name="LastUpdatedByUserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="From" Type="varchar" MaxLength="50" />
+          <Property Name="To" Type="varchar" MaxLength="50" />
+          <Property Name="Ref" Type="varchar" MaxLength="20" />
+          <Property Name="Result" Type="varchar" MaxLength="20" />
+          <Property Name="Passed" Type="bit" />
+          <Property Name="CreatedTime" Type="datetime" />
+          <Property Name="CreatedByUserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Step">
           <Key>
@@ -160,7 +185,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedTime" Type="datetime" />
@@ -415,6 +440,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Captcha_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Captcha" Type="Self.Captcha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Captcha">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InputType_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="InputType" Type="Self.InputType" Multiplicity="*" />
@@ -436,6 +473,18 @@
             </Principal>
             <Dependent Role="InputType">
               <PropertyRef Name="LastUpdatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OTP_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="OTP" Type="Self.OTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OTP">
+              <PropertyRef Name="CreatedByUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,7 +662,9 @@
           <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankGroup" EntityType="Self.BankGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankTransaction" EntityType="Self.BankTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Captcha" EntityType="Self.Captcha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InputType" EntityType="Self.InputType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTP" EntityType="Self.OTP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StepType" EntityType="Self.StepType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
@@ -688,6 +739,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="BankTransaction" EntitySet="BankTransaction" />
           </AssociationSet>
+          <AssociationSet Name="FK_Captcha_User" Association="Self.FK_Captcha_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Captcha" EntitySet="Captcha" />
+          </AssociationSet>
           <AssociationSet Name="FK_InputType_User" Association="Self.FK_InputType_User">
             <End Role="User" EntitySet="User" />
             <End Role="InputType" EntitySet="InputType" />
@@ -695,6 +750,10 @@
           <AssociationSet Name="FK_InputType_User_1" Association="Self.FK_InputType_User_1">
             <End Role="User" EntitySet="User" />
             <End Role="InputType" EntitySet="InputType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OTP_User" Association="Self.FK_OTP_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="OTP" EntitySet="OTP" />
           </AssociationSet>
           <AssociationSet Name="FK_Role_User" Association="Self.FK_Role_User">
             <End Role="User" EntitySet="User" />
@@ -995,6 +1054,8 @@
           <NavigationProperty Name="UserRole" Relationship="Self.FK_User_Role" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="WebBrowsers" Relationship="Self.FK_WebBrowser_User" FromRole="User" ToRole="WebBrowser" />
           <NavigationProperty Name="WebBrowsers1" Relationship="Self.FK_WebBrowser_User_1" FromRole="User" ToRole="WebBrowser" />
+          <NavigationProperty Name="Captchas" Relationship="RazzilModel.FK_Captcha_User" FromRole="User" ToRole="Captcha" />
+          <NavigationProperty Name="OTPs" Relationship="RazzilModel.FK_OTP_User" FromRole="User" ToRole="OTP" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -1570,7 +1631,68 @@
             <End Role="User" EntitySet="Users" />
             <End Role="WebBrowser" EntitySet="WebBrowsers" />
           </AssociationSet>
+          <EntitySet Name="Captchas" EntityType="RazzilModel.Captcha" />
+          <EntitySet Name="OTPs" EntityType="RazzilModel.OTP" />
+          <AssociationSet Name="FK_Captcha_User" Association="RazzilModel.FK_Captcha_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Captcha" EntitySet="Captchas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OTP_User" Association="RazzilModel.FK_OTP_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="OTP" EntitySet="OTPs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Captcha">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Result" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Passed" Type="Boolean" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="RazzilModel.FK_Captcha_User" FromRole="Captcha" ToRole="User" />
+        </EntityType>
+        <EntityType Name="OTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="To" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Result" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Passed" Type="Boolean" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="RazzilModel.FK_OTP_User" FromRole="OTP" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Captcha_User">
+          <End Type="RazzilModel.User" Role="User" Multiplicity="1" />
+          <End Type="RazzilModel.Captcha" Role="Captcha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Captcha">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OTP_User">
+          <End Type="RazzilModel.User" Role="User" Multiplicity="1" />
+          <End Type="RazzilModel.OTP" Role="OTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OTP">
+              <PropertyRef Name="CreatedByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1652,6 +1774,8 @@
           <EntitySetMapping Name="BankTransactions">
             <EntityTypeMapping TypeName="RazzilModel.BankTransaction">
               <MappingFragment StoreEntitySet="BankTransaction">
+                <ScalarProperty Name="OTPRef" ColumnName="OTPRef" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
@@ -1666,8 +1790,6 @@
                 <ScalarProperty Name="FromBankId" ColumnName="FromBankId" />
                 <ScalarProperty Name="ToBankId" ColumnName="ToBankId" />
                 <ScalarProperty Name="Captcha" ColumnName="Captcha" />
-                <ScalarProperty Name="OTP" ColumnName="OTP" />
-                <ScalarProperty Name="OTPRef" ColumnName="OTPRef" />
                 <ScalarProperty Name="BankCharge" ColumnName="BankCharge" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="LastPage" ColumnName="LastPage" />
@@ -1738,7 +1860,7 @@
           <EntitySetMapping Name="TransactionTypes">
             <EntityTypeMapping TypeName="RazzilModel.TransactionType">
               <MappingFragment StoreEntitySet="TransactionType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -1792,6 +1914,33 @@
                 <ScalarProperty Name="LastUpdatedTime" ColumnName="LastUpdatedTime" />
                 <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
                 <ScalarProperty Name="LastUpdatedByUserID" ColumnName="LastUpdatedByUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Captchas">
+            <EntityTypeMapping TypeName="RazzilModel.Captcha">
+              <MappingFragment StoreEntitySet="Captcha">
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="Passed" ColumnName="Passed" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTPs">
+            <EntityTypeMapping TypeName="RazzilModel.OTP">
+              <MappingFragment StoreEntitySet="OTP">
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="Passed" ColumnName="Passed" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Ref" ColumnName="Ref" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

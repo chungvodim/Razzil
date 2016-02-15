@@ -39,6 +39,8 @@ namespace Razzil.DataAccess.Repository
             this.UserRoles1 = new HashSet<UserRole>();
             this.WebBrowsers = new HashSet<WebBrowser>();
             this.WebBrowsers1 = new HashSet<WebBrowser>();
+            this.Captchas = new HashSet<Captcha>();
+            this.OTPs = new HashSet<OTP>();
         }
     
         public int Id { get; set; }
@@ -98,5 +100,9 @@ namespace Razzil.DataAccess.Repository
         public virtual ICollection<WebBrowser> WebBrowsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WebBrowser> WebBrowsers1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Captcha> Captchas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OTP> OTPs { get; set; }
     }
 }
