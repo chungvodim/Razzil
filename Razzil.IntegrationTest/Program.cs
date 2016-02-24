@@ -14,8 +14,7 @@ namespace Razzil.IntegrationTest
         {
             int bankId = 1;
             StepContext stepContext = new StepContext(bankId);
-            stepContext.TransactionModel.UserName = "chungvodim1";
-            stepContext.TransactionModel.Password = "Asdfgh123$%";
+            stepContext.InitTransactionModel("123456789", 1, "987654321", 1, 10000, "transfer money");
             worker = new Worker(stepContext);
             worker.OnStart += OnTransactionStart;
             worker.OnSuccess += OnTransactionSuccess;
