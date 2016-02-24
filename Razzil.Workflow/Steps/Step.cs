@@ -118,7 +118,7 @@ namespace Razzil.Workflow
             }
                 
         }
-        public virtual async Task<TransactionResult> Execute()
+        public virtual async Task<TransactionResultEnum> Execute()
         {
             Step nextStep = CreateNextStep();
             if (nextStep != null)
@@ -127,7 +127,7 @@ namespace Razzil.Workflow
             }
             else
             {
-                return TransactionResult.Successful;
+                return TransactionResultEnum.Successful;
             }
         }
 

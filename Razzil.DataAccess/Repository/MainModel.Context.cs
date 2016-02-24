@@ -37,5 +37,7 @@ namespace Razzil.DataAccess.Repository
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<WebBrowser> WebBrowsers { get; set; }
+        public virtual DbSet<Captcha> Captchas { get; set; }
+        public virtual DbSet<OTP> OTPs { get; set; }
     }
 }

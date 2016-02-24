@@ -17,7 +17,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<TransactionResult> Execute()
+        public override async Task<TransactionResultEnum> Execute()
         {
             var ButtonElement = this.Context.WaitDriver.Until(ExpectedConditions.ElementToBeClickable(By.XPath(this.XPath)));
             ButtonElement.Click();
@@ -29,7 +29,7 @@ namespace Razzil.Workflow
             else
             {
                 this.Context.StatusCode = StatusCode.BANK_PAGE_CHANGED;
-                return TransactionResult.Failed;
+                return TransactionResultEnum.Failed;
             }
         }
     }

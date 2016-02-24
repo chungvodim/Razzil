@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Razzil.Models
 {
-    public enum TransactionResult
+    public class ResponseResult
     {
-        Started = 0,
-        Successful = 1,
-        Inprogress = 2,
-        Failed = 3,
+        public ResponseStatusEnum Status { get; set; }
+        public string Data { get; set; }
     }
 }

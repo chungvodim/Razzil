@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.StepsGenerator", "Ra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Razzil.WCF.Service", "Razzil.WCF.Service\Razzil.WCF.Service.csproj", "{7B440D9B-3F6B-4336-8B51-BEB5406BA536}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CaptchaRecognition", "CaptchaRecognition\CaptchaRecognition.pyproj", "{5C850024-175B-48BD-A96F-8F41351943E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,8 @@ Global
 		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B440D9B-3F6B-4336-8B51-BEB5406BA536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C850024-175B-48BD-A96F-8F41351943E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C850024-175B-48BD-A96F-8F41351943E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

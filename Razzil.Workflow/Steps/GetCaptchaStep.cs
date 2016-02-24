@@ -13,7 +13,7 @@ namespace Razzil.Workflow
         {
             Initialize(currentStepId, context);
         }
-        public override async Task<TransactionResult> Execute()
+        public override async Task<TransactionResultEnum> Execute()
         {
             using (var response = this.Context.httpClient.GetAsync(this.Url).Result)
             {
@@ -24,7 +24,7 @@ namespace Razzil.Workflow
                 }
                 else
                 {
-                    return TransactionResult.Failed;
+                    return TransactionResultEnum.Failed;
                 }
             }
         }

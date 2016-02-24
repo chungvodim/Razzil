@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Razzil.DataAccess.Repository.OTP>
+
+@foreach (var item in Model)
+{
+    using (Html.BeginForm("Input", "OTP", FormMethod.Post, new { id = item.Id }))
+    {
+        <div class="form-horizontal">
+            <input type="hidden" name="Id" id="Id" value="@item.Id" />
+            <div>@item.CreatedTime: @item.Content</div>
+            <label for="Ref">Ref</label>
+            <input class="form-control" id="Ref" name="Ref" type="text">
+            <label for="Result">Result</label>
+            <input class="form-control" id="Result" name="Result" type="text">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    }
+}

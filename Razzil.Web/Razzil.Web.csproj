@@ -125,8 +125,10 @@
     <Compile Include="Controllers\BankGroupsController.cs" />
     <Compile Include="Controllers\BanksController.cs" />
     <Compile Include="Controllers\BankTransactionsController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InputTypesController.cs" />
+    <Compile Include="Controllers\OTPController.cs" />
     <Compile Include="Controllers\StepsController.cs" />
     <Compile Include="Controllers\StepTypesController.cs" />
     <Compile Include="Controllers\TransactionTypesController.cs" />
@@ -247,6 +249,10 @@
     <Content Include="Views\WebBrowsers\Details.cshtml" />
     <Content Include="Views\WebBrowsers\Edit.cshtml" />
     <Content Include="Views\WebBrowsers\Index.cshtml" />
+    <Content Include="Views\Captcha\Input.cshtml" />
+    <Content Include="Views\OTP\Input.cshtml" />
+    <Content Include="Views\Shared\_CaptchaPartial.cshtml" />
+    <Content Include="Views\Shared\_OTPPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,6 +266,10 @@
     <ProjectReference Include="..\Razzil.DataAccess\Razzil.DataAccess.csproj">
       <Project>{ec031a5d-5c78-4c98-80e8-b35c1f855317}</Project>
       <Name>Razzil.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Razzil.Models\Razzil.Models.csproj">
+      <Project>{1088bab7-500e-4b92-8f9e-6fd14e64e497}</Project>
+      <Name>Razzil.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Razzil.Utils\Razzil.Utils.csproj">
       <Project>{f886540f-a012-4bf1-bcae-80f1697f183a}</Project>
