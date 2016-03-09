@@ -9,18 +9,18 @@ namespace Razzil.IntegrationTest
 {
     class Program
     {
-        private static Workflow.Worker workflow;
+        private static Workflow.Worker worker;
         static void Main(string[] args)
         {
-            StepContext stepContext = new StepContext(1);
-            stepContext.TransactionModel.UserName = "chungvodim1";
-            stepContext.TransactionModel.Password = "Asdfgh123$%";
-            workflow = new Workflow.Worker(stepContext);
-            workflow.OnStart += OnTransactionStart;
-            workflow.OnSuccess += OnTransactionSuccess;
-            workflow.OnFail += OnTransactionFail;
-            workflow.OnInprogress += OnTransactionInprogress;
-            workflow.Execute();
+            int bankId = 1;
+            StepContext stepContext = new StepContext(bankId);
+            stepContext.InitTransactionModel("123456789", 1, "987654321", 1, 10000, "transfer money");
+            worker = new Worker(stepContext);
+            worker.OnStart += OnTransactionStart;
+            worker.OnSuccess += OnTransactionSuccess;
+            worker.OnFail += OnTransactionFail;
+            worker.OnInprogress += OnTransactionInprogress;
+            worker.Execute();
         }
 
         private static void OnTransactionInprogress(Step step)
